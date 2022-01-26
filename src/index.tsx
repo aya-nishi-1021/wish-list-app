@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'ress';
+import './assets/styles/foundation/base.scss';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
