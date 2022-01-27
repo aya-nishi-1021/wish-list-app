@@ -1,4 +1,4 @@
-import '../assets/styles/pages/login.scss';
+import '../assets/styles/pages/Login.scss';
 import LoginSignupArea from '../components/Login/LoginSignupArea';
 
 const Login: React.FC = () => (
