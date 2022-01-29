@@ -1,5 +1,5 @@
-import 'assets/styles/components/Login/LoginSignupArea.scss';
-import IconGoogle from 'assets/images/icon_google.svg';
+import '@/assets/styles/components/Login/LoginSignupArea.scss';
+import IconGoogle from '@/assets/images/icon_google.svg';
 
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">

@@ -1,4 +1,5 @@
 const sassResourcesLoader = require('craco-sass-resources-loader');
+const path = require('path');
 
 module.exports = {
     mode: "development",
@@ -13,4 +14,9 @@ module.exports = {
             },
         },
     ],
+    webpack: {
+        alias: {
+            '@': path.resolve(__dirname, './src/'),
+        },
+    },
 };

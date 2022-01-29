@@ -1,5 +1,5 @@
-import 'assets/styles/pages/Login.scss';
-import LoginSignupArea from 'components/Login/LoginSignupArea';
+import '@/assets/styles/pages/Login.scss';
+import LoginSignupArea from '@/components/Login/LoginSignupArea';
 
 const Login: React.FC = () => (
   <div className="login-signup">
