@@ -4,7 +4,7 @@ import Heading from '@/components/Login/Heading';
 
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">
-    <Heading />
+    <Heading text="ログインまたは新規登録" />
     <div className="login-signup-area__input-wrapper">
       <input className="login-signup-area__input" type="text" name="email" placeholder="email" />
       <input className="login-signup-area__input" type="password" name="password" placeholder="password" />

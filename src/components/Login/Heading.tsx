@@ -1,5 +1,13 @@
 import '@/assets/styles/components/Login/Heading.scss';
 
-const Heading: React.FC = () => <h3 className="login-signup-area__heading">ログインまたは新規登録</h3>;
+type Props = {
+  text: string;
+};
+
+const Heading: React.FC<Props> = (props) => {
+  const { text } = props;
+
+  return <h3 className="login-signup-area__heading">{text}</h3>;
+};
 
 export default Heading;
