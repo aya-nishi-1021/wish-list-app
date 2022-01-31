@@ -8,7 +8,7 @@ const LoginSignupArea: React.FC = () => (
       <input className="login-signup-area__input" type="text" name="email" placeholder="email" />
       <input className="login-signup-area__input" type="password" name="password" placeholder="password" />
       <div className="login-signup-area__reset-password-link-wrapper">
-        <a className="login-signup-area__reset-password-link" href="/#">
+        <a className="login-signup-area__reset-password-link" href="/login?reset_password">
           パスワードをお忘れですか？
         </a>
       </div>
