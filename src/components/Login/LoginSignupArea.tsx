@@ -1,7 +1,7 @@
 import '@/assets/styles/components/Login/LoginSignupArea.scss';
 import IconGoogle from '@/assets/images/icon_google.svg';
 import Heading from '@/components/Login/Heading';
-import getHeadingText from './getHeadingText';
+import getHeadingText from '@/components/Login/Heading/getHeadingText';
 
 const LoginSignupArea: React.FC = () => {
   const headingText = getHeadingText();
