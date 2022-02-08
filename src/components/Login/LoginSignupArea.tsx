@@ -24,6 +24,18 @@ const LoginSignupContent: React.FC = () => (
   </>
 );
 
+const PasswordResetContent: React.FC = () => (
+  <>
+    <div className="login-signup-area__input-wrapper">
+      <input className="login-signup-area__input" type="text" name="email" placeholder="email" />
+      <input className="login-signup-area__input" type="password" name="new-password" placeholder="new password" />
+    </div>
+    <button className="login-signup-area__submit-button" type="submit">
+      再設定する
+    </button>
+  </>
+);
+
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">
     <Heading />
