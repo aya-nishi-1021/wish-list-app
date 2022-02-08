@@ -5,8 +5,8 @@ import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from '.
 jest.mock('./getLoginSignupAreaViewPattern');
 const mockLoginSignupAreaViewPattern = getLoginSignupAreaViewPattern as jest.Mock;
 
-describe('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP の場合、LoginSignupContent コンポーネントを返す', () => {
-  it('getHeadingText() の返り値が表示される', () => {
+describe('LoginSignupAreaContent', () => {
+  it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET の場合、PasswordResetContent コンポーネントを返す', () => {
     mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET);
     const wrapper = shallow(<LoginSignupAreaContent />);
     expect(wrapper.debug()).toEqual('<PasswordResetContent />');
