@@ -25,13 +25,13 @@ module.exports = {
     'react',
     '@typescript-eslint',
   ],
-  "ignorePatterns": [
-    ".eslintrc.js"
+  'ignorePatterns': [
+    '.eslintrc.js'
   ],
   rules: {
-    'no-use-before-define': "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    'import/prefer-default-export': "off",
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    'import/prefer-default-export': 'off',
     'import/extensions': [
         'error',
         {
@@ -50,17 +50,23 @@ module.exports = {
     'react/function-component-definition': [
       2,
       {
-        namedComponents: "arrow-function",
-        unnamedComponents: "arrow-function",
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
       }
     ],
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
     'no-void': [
       'error',
       {
         allowAsStatement: true,
       },
     ],
+    'import/no-extraneous-dependencies': [
+      'error', {
+        'devDependencies': true
+      }
+    ]
   },
   settings: {
     'import/resolver': {

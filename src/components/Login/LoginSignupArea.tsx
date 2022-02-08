@@ -1,9 +1,10 @@
 import '@/assets/styles/components/Login/LoginSignupArea.scss';
 import IconGoogle from '@/assets/images/icon_google.svg';
+import Heading from '@/components/Login/Heading';
 
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">
-    <h3 className="login-signup-area__sub-title">ログインまたは新規登録</h3>
+    <Heading />
     <div className="login-signup-area__input-wrapper">
       <input className="login-signup-area__input" type="text" name="email" placeholder="email" />
       <input className="login-signup-area__input" type="password" name="password" placeholder="password" />
