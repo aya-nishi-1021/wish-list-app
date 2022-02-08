@@ -1,6 +1,6 @@
 import '@/assets/styles/components/Login/Heading.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
-import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from '../getLoginSignupAreaViewPattern';
+import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from './getLoginSignupAreaViewPattern';
 
 const getHeadingText = (): string => {
   const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
@@ -32,7 +32,7 @@ const getIsBackButtonShow = (): boolean => {
   }
 };
 
-const Heading: React.FC = () => {
+const LoginSignupAreaHeading: React.FC = () => {
   const headingText = getHeadingText();
   const isBackButtonShow = getIsBackButtonShow();
 
@@ -54,4 +54,4 @@ const Heading: React.FC = () => {
   );
 };
 
-export default Heading;
+export default LoginSignupAreaHeading;

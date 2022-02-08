@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import Heading from '.';
-import getHeadingText from './getHeadingText';
+import Heading from './LoginSignupAreaHeading';
+import getHeadingText from './Heading/getHeadingText';
 
 jest.mock('./getHeadingText');
 const mockHeadingText = getHeadingText as jest.Mock;

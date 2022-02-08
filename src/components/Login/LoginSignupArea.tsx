@@ -1,10 +1,10 @@
 import '@/assets/styles/components/Login/LoginSignupArea.scss';
-import Heading from '@/components/Login/Heading';
+import LoginSignupAreaHeading from '@/components/Login/LoginSignupAreaHeading';
 import LoginSignupAreaContent from './LoginSignupAreaContent';
 
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">
-    <Heading />
+    <LoginSignupAreaHeading />
     <LoginSignupAreaContent />
   </div>
 );
