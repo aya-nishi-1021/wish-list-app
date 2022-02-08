@@ -1,6 +1,8 @@
 import '@/assets/styles/components/Login/LoginSignupAreaContent.scss';
 import IconGoogle from '@/assets/images/icon_google.svg';
-import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from './getLoginSignupAreaViewPattern';
+import getLoginSignupAreaViewPattern, {
+  LOGIN_SIGNUP_AREA_VIEN_PATTERN,
+} from '@/components/Login/getLoginSignupAreaViewPattern';
 
 const LoginSignupContent: React.FC = () => (
   <div className="login-signup-area-content">
