@@ -17,9 +17,24 @@ const getHeadingText = (): string => {
   }
 };
 
+const getIsBackButtonShow = (): boolean => {
+  const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
+
+  switch (loginSignupAreaViewPattern) {
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
+      return true;
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM:
+      return true;
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
+      return false;
+    default:
+      return false;
+  }
+};
+
 const Heading: React.FC = () => {
   const headingText = getHeadingText();
-  const isBackButtonShow = !!window.location.search;
+  const isBackButtonShow = getIsBackButtonShow();
 
   return (
     <div className="login-signup-area-heading">
