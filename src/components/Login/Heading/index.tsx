@@ -1,6 +1,21 @@
 import '@/assets/styles/components/Login/Heading.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
-import getHeadingText from './getHeadingText';
+import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from '../getLoginSignupAreaViewPattern';
+
+const getHeadingText = (): string => {
+  const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
+
+  switch (loginSignupAreaViewPattern) {
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
+      return 'パスワードをお忘れですか？';
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM:
+      return '登録を完了する';
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
+      return 'ログインまたは新規登録';
+    default:
+      return '';
+  }
+};
 
 const Heading: React.FC = () => {
   const headingText = getHeadingText();
