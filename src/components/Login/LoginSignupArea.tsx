@@ -1,6 +1,7 @@
 import '@/assets/styles/components/Login/LoginSignupArea.scss';
 import IconGoogle from '@/assets/images/icon_google.svg';
 import Heading from '@/components/Login/Heading';
+import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from './getLoginSignupAreaViewPattern';
 
 const LoginSignupContent: React.FC = () => (
   <>
@@ -36,10 +37,26 @@ const PasswordResetContent: React.FC = () => (
   </>
 );
 
+const LoginSignupAreaContent: React.FC = () => {
+  const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
+
+  switch (loginSignupAreaViewPattern) {
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
+      return <PasswordResetContent />;
+    // TODO: 登録を完了する用のコンポーネントを作って差し替える
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM:
+      return null;
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
+      return <LoginSignupContent />;
+    default:
+      return null;
+  }
+};
+
 const LoginSignupArea: React.FC = () => (
   <div className="login-signup-area">
     <Heading />
-    <LoginSignupContent />
+    <LoginSignupAreaContent />
   </div>
 );
 
