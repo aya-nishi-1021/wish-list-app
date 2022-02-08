@@ -2,9 +2,8 @@ import '@/assets/styles/components/Login/LoginSignupArea.scss';
 import IconGoogle from '@/assets/images/icon_google.svg';
 import Heading from '@/components/Login/Heading';
 
-const LoginSignupArea: React.FC = () => (
-  <div className="login-signup-area">
-    <Heading />
+const LoginSignupContent: React.FC = () => (
+  <>
     <div className="login-signup-area__input-wrapper">
       <input className="login-signup-area__input" type="text" name="email" placeholder="email" />
       <input className="login-signup-area__input" type="password" name="password" placeholder="password" />
@@ -22,6 +21,13 @@ const LoginSignupArea: React.FC = () => (
       <img className="login-signup-area__sns-icon" src={IconGoogle} alt="google" />
       <span className="login-signup-area__sns-text">Google で続行</span>
     </button>
+  </>
+);
+
+const LoginSignupArea: React.FC = () => (
+  <div className="login-signup-area">
+    <Heading />
+    <LoginSignupContent />
   </div>
 );
 
