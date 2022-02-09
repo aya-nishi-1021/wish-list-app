@@ -43,15 +43,25 @@ const PasswordResetContent: React.FC = () => (
   </div>
 );
 
+const SignupConfirmContent: React.FC = () => (
+  <div className="login-signup-area-content">
+    <div className="login-signup-area-content__input-wrapper">
+      <input className="login-signup-area-content__input" type="text" name="nickname" placeholder="nickname" />
+    </div>
+    <button className="login-signup-area-content__submit-button" type="submit">
+      続行する
+    </button>
+  </div>
+);
+
 const LoginSignupAreaContent: React.FC = () => {
   const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
 
   switch (loginSignupAreaViewPattern) {
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
       return <PasswordResetContent />;
-    // TODO: 登録を完了する用のコンポーネントを作って差し替える
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM:
-      return null;
+      return <SignupConfirmContent />;
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
       return <LoginSignupContent />;
     default:
