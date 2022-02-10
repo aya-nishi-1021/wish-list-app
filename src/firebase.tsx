@@ -43,6 +43,14 @@ export const logout = async () => {
   await app.auth().signOut();
 };
 
+export const resetPassword = (email: string) => {
+  const actionCodeSettings = {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    url: `${process.env.REACT_APP_MAIL_URL!}?email=${email}`,
+  };
+  return app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+};
+
 export const FirebaseProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<firebase.User | null>(null);
   const [loading, setLoading] = useState(true);
