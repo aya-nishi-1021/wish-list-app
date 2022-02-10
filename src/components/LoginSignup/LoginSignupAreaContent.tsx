@@ -5,7 +5,7 @@ import { signupWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
 import getLoginSignupAreaViewPattern, {
   LOGIN_SIGNUP_AREA_VIEN_PATTERN,
-} from '@/components/Login/getLoginSignupAreaViewPattern';
+} from '@/components/LoginSignup/getLoginSignupAreaViewPattern';
 
 const LoginContent: React.FC = () => {
   const navigate = useNavigate();

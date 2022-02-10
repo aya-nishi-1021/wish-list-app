@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/pages/Login.scss';
 import { FirebaseContext } from '@/contexts';
-import LoginSignupArea from '@/components/Login/LoginSignupArea';
+import LoginSignupArea from '@/components/LoginSignup/LoginSignupArea';
 
 const Login: React.FC = () => {
   // ログイン済みかどうかのフラグ
