@@ -15,11 +15,6 @@ describe('getLoginSignupAreaViewPattern', () => {
     expect(getLoginSignupAreaViewPattern()).toEqual(LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET);
   });
 
-  it('クエリが signup_confirm の場合、LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM を返す', () => {
-    setLocationSearch('signup_confirm');
-    expect(getLoginSignupAreaViewPattern()).toEqual(LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM);
-  });
-
   it('クエリがない場合、LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP を返す', () => {
     setLocationSearch('');
     expect(getLoginSignupAreaViewPattern()).toEqual(LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP);

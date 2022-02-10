@@ -63,11 +63,6 @@ describe('LoginSignupAreaHeading', () => {
       const wrapper = shallow(<LoginSignupAreaHeading />);
       expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('パスワードをお忘れですか？');
     });
-    it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM の場合、「登録を完了する」が表示される', () => {
-      mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP_CONFIRM);
-      const wrapper = shallow(<LoginSignupAreaHeading />);
-      expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('登録を完了する');
-    });
     it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP の場合、「ログインまたは新規登録」が表示される', () => {
       mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP);
       const wrapper = shallow(<LoginSignupAreaHeading />);
