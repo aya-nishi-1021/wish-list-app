@@ -2,9 +2,9 @@ import '@/assets/styles/components/LoginSignup/LoginSignupAreaContent.scss';
 import getLoginSignupAreaViewPattern, {
   LOGIN_SIGNUP_AREA_VIEN_PATTERN,
 } from '@/components/LoginSignup/getLoginSignupAreaViewPattern';
-import LoginSignupAreaLoginContent from '@/components/LoginSignup/LoginSignupAreaLoginContent';
-import LoginSignupAreaSignupContent from '@/components/LoginSignup/LoginSignupAreaSignupContent';
-import LoginSignupAreaPasswordResetContent from '@/components/LoginSignup/LoginSignupAreaPasswordResetContent';
+import LoginSignupAreaLoginContent from '@/components/LoginSignup/LoginSignupAreaContent/LoginSignupAreaLoginContent';
+import LoginSignupAreaSignupContent from '@/components/LoginSignup/LoginSignupAreaContent/LoginSignupAreaSignupContent';
+import LoginSignupAreaPasswordResetContent from '@/components/LoginSignup/LoginSignupAreaContent/LoginSignupAreaPasswordResetContent';
 
 const LoginSignupAreaContent: React.FC = () => {
   const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();

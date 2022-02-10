@@ -1,8 +1,10 @@
 import { shallow } from 'enzyme';
-import LoginSignupAreaContent from './LoginSignupAreaContent';
-import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from './getLoginSignupAreaViewPattern';
+import LoginSignupAreaContent from '.';
+import getLoginSignupAreaViewPattern, {
+  LOGIN_SIGNUP_AREA_VIEN_PATTERN,
+} from '@/components/LoginSignup/getLoginSignupAreaViewPattern';
 
-jest.mock('./getLoginSignupAreaViewPattern');
+jest.mock('@/components/LoginSignup/getLoginSignupAreaViewPattern');
 const mockLoginSignupAreaViewPattern = getLoginSignupAreaViewPattern as jest.Mock;
 
 describe('LoginSignupAreaContent', () => {
