@@ -30,6 +30,8 @@ module.exports = {
   ],
   rules: {
     'no-use-before-define': 'off',
+    'no-shadow': 'off',
+    'no-console': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': [
