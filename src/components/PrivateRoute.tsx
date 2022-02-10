@@ -1,8 +1,10 @@
+import React, { useContext } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
+import { FirebaseContext } from '@/contexts';
 
 const PrivateRoute: React.FC = () => {
   // ログイン済みかどうかのフラグ
-  const isAuthenticated = false;
+  const isAuthenticated = useContext(FirebaseContext).user;
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
