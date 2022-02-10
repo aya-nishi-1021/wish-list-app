@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Login/LoginSignupAreaHeading.scss';
+import '@/assets/styles/components/Login/LoginSignupAreaTabs.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import getLoginSignupAreaViewPattern, { LOGIN_SIGNUP_AREA_VIEN_PATTERN } from './getLoginSignupAreaViewPattern';
 
