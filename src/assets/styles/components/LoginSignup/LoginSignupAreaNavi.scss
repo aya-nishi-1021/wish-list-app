@@ -1,0 +1,48 @@
+.login-signup-area-tabs {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.login-signup-area-tab {
+  width: 100%;
+  padding-bottom: 8px;
+
+  > a {
+    display: block;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: normal;
+    text-decoration: none;
+    color: $theme-brown-dark;
+  }
+
+  &--focused {
+    border-bottom: 2px solid $theme-brown-dark;
+  }
+}
+
+.login-signup-area-password-reset-heading {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid $theme-brown-dark;
+
+  &__to-login-page-link {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+
+    > img {
+      width: 8px;
+    }
+  }
+
+  &__text {
+    width: 100%;
+    padding-right: 24px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: normal;
+  }
+}

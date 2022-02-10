@@ -4,7 +4,7 @@ import '@/assets/styles/pages/Login.scss';
 import { FirebaseContext } from '@/contexts';
 import LoginSignupArea from '@/components/LoginSignup/LoginSignupArea';
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   // ログイン済みかどうかのフラグ
   const isAuthenticated = useContext(FirebaseContext).user;
   const navigate = useNavigate();
@@ -22,4 +22,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Signup;

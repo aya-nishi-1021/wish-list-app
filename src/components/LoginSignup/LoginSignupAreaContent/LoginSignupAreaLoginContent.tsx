@@ -1,13 +1,9 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '@/assets/styles/components/Login/LoginSignupAreaContent.scss';
 import { signupWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
-import getLoginSignupAreaViewPattern, {
-  LOGIN_SIGNUP_AREA_VIEN_PATTERN,
-} from '@/components/Login/getLoginSignupAreaViewPattern';
 
-const LoginSignupContent: React.FC = () => {
+const LoginSignupAreaLoginContent: React.FC = () => {
   const navigate = useNavigate();
   const emailInput = React.createRef<HTMLInputElement>();
   const passwordInput = React.createRef<HTMLInputElement>();
@@ -67,34 +63,4 @@ const LoginSignupContent: React.FC = () => {
   );
 };
 
-const PasswordResetContent: React.FC = () => (
-  <div className="login-signup-area-content">
-    <div className="login-signup-area-content__input-wrapper">
-      <input className="login-signup-area-content__input" type="text" name="email" placeholder="email" />
-      <input
-        className="login-signup-area-content__input"
-        type="password"
-        name="new-password"
-        placeholder="new password"
-      />
-    </div>
-    <button className="login-signup-area-content__submit-button" type="submit">
-      再設定する
-    </button>
-  </div>
-);
-
-const LoginSignupAreaContent: React.FC = () => {
-  const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
-
-  switch (loginSignupAreaViewPattern) {
-    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
-      return <PasswordResetContent />;
-    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
-      return <LoginSignupContent />;
-    default:
-      return null;
-  }
-};
-
-export default LoginSignupAreaContent;
+export default LoginSignupAreaLoginContent;
