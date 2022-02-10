@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signupWithEmail, loginWithGoogle } from '@/firebase';
+import { loginWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
 
 const LoginSignupAreaLoginContent: React.FC = () => {
@@ -13,7 +13,7 @@ const LoginSignupAreaLoginContent: React.FC = () => {
       event.preventDefault();
       const email = emailInput.current?.value;
       const password = passwordInput.current?.value;
-      if (email && password) await signupWithEmail(email, password);
+      if (email && password) await loginWithEmail(email, password);
       navigate('/');
     },
     [emailInput, passwordInput, navigate]
