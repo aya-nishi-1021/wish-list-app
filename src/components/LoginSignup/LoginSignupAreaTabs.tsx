@@ -17,7 +17,7 @@ const getHeadingText = (): string => {
   }
 };
 
-const LoginSignupAreaHeading: React.FC = () => {
+const LoginSignupAreaTabs: React.FC = () => {
   const headingText = getHeadingText();
   const isBackButtonShow = !!window.location.search;
   const { pathname } = window.location;
@@ -56,4 +56,4 @@ const LoginSignupAreaHeading: React.FC = () => {
   );
 };
 
-export default LoginSignupAreaHeading;
+export default LoginSignupAreaTabs;
