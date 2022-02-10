@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '@/assets/styles/components/Login/LoginSignupAreaContent.scss';
+import '@/assets/styles/components/LoginSignup/LoginSignupAreaContent.scss';
 import { signupWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
 import getLoginSignupAreaViewPattern, {

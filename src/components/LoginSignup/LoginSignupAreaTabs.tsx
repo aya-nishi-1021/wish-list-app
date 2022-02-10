@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Login/LoginSignupAreaTabs.scss';
+import '@/assets/styles/components/LoginSignup/LoginSignupAreaTabs.scss';
 
 const LoginSignupAreaTabs: React.FC = () => {
   const { pathname } = window.location;
