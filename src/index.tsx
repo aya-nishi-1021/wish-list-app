@@ -8,18 +8,21 @@ import PrivateRoute from '@/components/PrivateRoute';
 import Home from '@/pages/Home';
 import Setting from '@/pages/Setting';
 import reportWebVitals from '@/reportWebVitals';
+import { FirebaseProvider } from './firebase';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/setting" element={<Setting />} />
-        </Route>
-      </Routes>
-    </Router>
+    <FirebaseProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/setting" element={<Setting />} />
+          </Route>
+        </Routes>
+      </Router>
+    </FirebaseProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
