@@ -7,7 +7,7 @@ import getLoginSignupAreaViewPattern, {
   LOGIN_SIGNUP_AREA_VIEN_PATTERN,
 } from '@/components/Login/getLoginSignupAreaViewPattern';
 
-const LoginSignupContent: React.FC = () => {
+const LoginContent: React.FC = () => {
   const navigate = useNavigate();
   const emailInput = React.createRef<HTMLInputElement>();
   const passwordInput = React.createRef<HTMLInputElement>();
@@ -88,10 +88,10 @@ const LoginSignupAreaContent: React.FC = () => {
   const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
 
   switch (loginSignupAreaViewPattern) {
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN:
+      return <LoginContent />;
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
       return <PasswordResetContent />;
-    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
-      return <LoginSignupContent />;
     default:
       return null;
   }

@@ -58,15 +58,20 @@ describe('LoginSignupAreaHeading', () => {
   });
 
   describe('h3 タグのテキスト', () => {
+    it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN の場合、「ログイン」が表示される', () => {
+      mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN);
+      const wrapper = shallow(<LoginSignupAreaHeading />);
+      expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('ログイン');
+    });
+    it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP の場合、「新規登録」が表示される', () => {
+      mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP);
+      const wrapper = shallow(<LoginSignupAreaHeading />);
+      expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('新規登録');
+    });
     it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET の場合、「パスワードをお忘れですか？」が表示される', () => {
       mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET);
       const wrapper = shallow(<LoginSignupAreaHeading />);
       expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('パスワードをお忘れですか？');
-    });
-    it('getLoginSignupAreaViewPattern() の返り値が LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP の場合、「ログインまたは新規登録」が表示される', () => {
-      mockLoginSignupAreaViewPattern.mockImplementationOnce(() => LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP);
-      const wrapper = shallow(<LoginSignupAreaHeading />);
-      expect(wrapper.find('.login-signup-area-heading__text').text()).toEqual('ログインまたは新規登録');
     });
   });
 });

@@ -6,10 +6,12 @@ const getHeadingText = (): string => {
   const loginSignupAreaViewPattern = getLoginSignupAreaViewPattern();
 
   switch (loginSignupAreaViewPattern) {
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN:
+      return 'ログイン';
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP:
+      return '新規登録';
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
       return 'パスワードをお忘れですか？';
-    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN_SIGNUP:
-      return 'ログインまたは新規登録';
     default:
       return '';
   }
