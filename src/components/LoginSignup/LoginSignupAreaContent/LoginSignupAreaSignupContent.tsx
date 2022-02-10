@@ -7,7 +7,7 @@ const LoginSignupAreaSignupContent: React.FC = () => {
   const emailInput = React.createRef<HTMLInputElement>();
   const passwordInput = React.createRef<HTMLInputElement>();
 
-  const handleLoginWithEmail = useCallback(
+  const handleSignupWithEmail = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
       const email = emailInput.current?.value;
@@ -36,7 +36,7 @@ const LoginSignupAreaSignupContent: React.FC = () => {
           ref={passwordInput}
         />
       </div>
-      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleLoginWithEmail}>
+      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleSignupWithEmail}>
         続行する
       </button>
     </div>
