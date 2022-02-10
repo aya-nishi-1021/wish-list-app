@@ -1,3 +1,26 @@
+.login-signup-area-tabs {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.login-signup-area-tab {
+  width: 100%;
+  padding-bottom: 8px;
+
+  > a {
+    display: block;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: normal;
+    text-decoration: none;
+    color: $theme-brown-dark;
+  }
+
+  &--focused {
+    border-bottom: 2px solid $theme-brown-dark;
+  }
+}
+
 .login-signup-area-password-reset-heading {
   display: flex;
   justify-content: center;

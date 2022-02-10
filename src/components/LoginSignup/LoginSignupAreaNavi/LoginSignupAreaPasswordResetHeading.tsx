@@ -1,4 +1,3 @@
-import '@/assets/styles/components/LoginSignup/LoginSignupAreaPasswordResetHeading.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 
 const LoginSignupAreaPasswordResetHeading: React.FC = () => (
