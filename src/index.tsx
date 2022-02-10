@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'ress';
 import '@/assets/styles/foundation/base.scss';
 import Login from '@/pages/Login';
+import Signup from '@/pages/Signup';
 import PrivateRoute from '@/components/PrivateRoute';
 import Home from '@/pages/Home';
 import Setting from '@/pages/Setting';
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
             <Route path="/setting" element={<Setting />} />
