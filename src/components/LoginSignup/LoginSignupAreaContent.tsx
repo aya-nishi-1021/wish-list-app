@@ -67,6 +67,47 @@ const LoginContent: React.FC = () => {
   );
 };
 
+const SignupContent: React.FC = () => {
+  const navigate = useNavigate();
+  const emailInput = React.createRef<HTMLInputElement>();
+  const passwordInput = React.createRef<HTMLInputElement>();
+
+  const handleLoginWithEmail = useCallback(
+    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      event.preventDefault();
+      const email = emailInput.current?.value;
+      const password = passwordInput.current?.value;
+      if (email && password) await signupWithEmail(email, password);
+      navigate('/');
+    },
+    [emailInput, passwordInput, navigate]
+  );
+
+  return (
+    <div className="login-signup-area-content">
+      <div className="login-signup-area-content__input-wrapper">
+        <input
+          className="login-signup-area-content__input"
+          type="text"
+          name="email"
+          placeholder="email"
+          ref={emailInput}
+        />
+        <input
+          className="login-signup-area-content__input"
+          type="password"
+          name="password"
+          placeholder="password"
+          ref={passwordInput}
+        />
+      </div>
+      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleLoginWithEmail}>
+        続行する
+      </button>
+    </div>
+  );
+};
+
 const PasswordResetContent: React.FC = () => (
   <div className="login-signup-area-content">
     <div className="login-signup-area-content__input-wrapper">
@@ -90,6 +131,8 @@ const LoginSignupAreaContent: React.FC = () => {
   switch (loginSignupAreaViewPattern) {
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.LOGIN:
       return <LoginContent />;
+    case LOGIN_SIGNUP_AREA_VIEN_PATTERN.SIGNUP:
+      return <SignupContent />;
     case LOGIN_SIGNUP_AREA_VIEN_PATTERN.PASSWORD_RESET:
       return <PasswordResetContent />;
     default:
