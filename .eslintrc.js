@@ -31,6 +31,7 @@ module.exports = {
   rules: {
     'no-use-before-define': 'off',
     'no-shadow': 'off',
+    'no-alert': 'off',
     'no-console': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'import/prefer-default-export': 'off',
