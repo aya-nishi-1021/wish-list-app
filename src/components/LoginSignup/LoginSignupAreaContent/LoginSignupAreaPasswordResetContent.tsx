@@ -19,6 +19,9 @@ const LoginSignupAreaPasswordResetContent: React.FC = () => {
 
   return (
     <div className="login-signup-area-content">
+      <div className="login-signup-area-content__description">
+        登録したメールアドレスを入力してください。パスワード再設定ページへのリンクをメールをお送りします。
+      </div>
       <div className="login-signup-area-content__input-wrapper">
         <input
           className="login-signup-area-content__input"

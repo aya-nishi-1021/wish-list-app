@@ -1,4 +1,9 @@
 .login-signup-area-content {
+  &__description {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+  }
+
   &__input-wrapper {
     margin-bottom: 24px;
   }
