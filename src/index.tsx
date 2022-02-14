@@ -7,7 +7,7 @@ import Login from '@/pages/Login';
 import Signup from '@/pages/Signup';
 import PrivateRoute from '@/components/PrivateRoute';
 import Home from '@/pages/Home';
-import Setting from '@/pages/Setting';
+import MyPage from '@/pages/MyPage';
 import reportWebVitals from '@/reportWebVitals';
 import { FirebaseProvider } from './firebase';
 
@@ -20,7 +20,7 @@ ReactDOM.render(
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-            <Route path="/setting" element={<Setting />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Route>
         </Routes>
       </Router>
