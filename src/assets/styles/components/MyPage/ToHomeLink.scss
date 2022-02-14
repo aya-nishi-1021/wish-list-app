@@ -1,0 +1,12 @@
+.to-home-link {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  color: $theme-brown-dark;
+  text-decoration: none;
+
+  > img {
+    width: 8px;
+    margin-right: 8px;
+  }
+}
