@@ -1,0 +1,46 @@
+.mypage {
+  padding: 84px 60px 0;
+
+  &__to-home-link {
+    margin-bottom: 24px;
+  }
+
+  &__content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  &__email {
+    margin-bottom: 24px;
+    font-size: 1.4rem;
+  }
+
+  &__password-reset-button {
+    display: block;
+    margin-bottom: 24px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: $theme-pink-dark;
+    font-size: 1.4rem;
+  }
+
+  &__logout-button {
+    display: block;
+    font-size: 1.4rem;
+    text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: $sp) {
+  .mypage {
+    padding: 84px 16px 0;
+
+    &__email {
+      margin-bottom: 12px;
+    }
+
+    &__password-reset-button {
+      margin-bottom: 12px;
+    }
+  }
+}
