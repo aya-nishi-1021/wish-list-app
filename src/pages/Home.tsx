@@ -1,11 +1,8 @@
-import { logout } from '@/firebase';
+import Header from '@/components/Common/Header';
 
 const Home: React.FC = () => (
-  <div>
-    <div>Home</div>
-    <button type="button" onClick={logout}>
-      ログアウト
-    </button>
+  <div className="home">
+    <Header />
   </div>
 );
 
