@@ -25,7 +25,7 @@ const MyPage: React.FC = () => {
 
   return (
     <div className="mypage">
-      <Header />
+      <Header isSearchBoxShow={false} />
       <div className="mypage__to-home-link">
         <ToHomeLink />
       </div>

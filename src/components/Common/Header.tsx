@@ -2,17 +2,23 @@ import '@/assets/styles/components/Common/Header.scss';
 import IconSearch from '@/assets/images/icon_search.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
 
-const Header: React.FC = () => (
+type Props = {
+  isSearchBoxShow: boolean;
+};
+
+const Header: React.FC<Props> = ({ isSearchBoxShow = true }) => (
   <header className="header">
     <h1 className="header__title">
       <a href="/">Food Wish List</a>
     </h1>
-    <div className="header__center-part">
-      <input type="text" className="header__search-input" />
-      <button type="button" className="header__search-button">
-        <img src={IconSearch} alt="検索する" />
-      </button>
-    </div>
+    {isSearchBoxShow && (
+      <div className="header__center-part">
+        <input type="text" className="header__search-input" />
+        <button type="button" className="header__search-button">
+          <img src={IconSearch} alt="検索する" />
+        </button>
+      </div>
+    )}
     <div className="header__right-part">
       <button type="button" className="header__add-shop-button">
         + 行きたいお店を追加
