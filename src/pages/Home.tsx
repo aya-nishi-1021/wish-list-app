@@ -2,7 +2,7 @@ import Header from '@/components/Common/Header';
 
 const Home: React.FC = () => (
   <div className="home">
-    <Header isSearchBoxShow />
+    <Header isSearchBoxShow isAddShopButtonShow />
   </div>
 );
 

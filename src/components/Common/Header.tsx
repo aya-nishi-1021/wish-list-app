@@ -4,9 +4,10 @@ import IconPerson from '@/assets/images/icon_person.svg';
 
 type Props = {
   isSearchBoxShow: boolean;
+  isAddShopButtonShow: boolean;
 };
 
-const Header: React.FC<Props> = ({ isSearchBoxShow = true }) => (
+const Header: React.FC<Props> = ({ isSearchBoxShow = true, isAddShopButtonShow = true }) => (
   <header className="header">
     <h1 className="header__title">
       <a href="/">Food Wish List</a>
@@ -20,9 +21,11 @@ const Header: React.FC<Props> = ({ isSearchBoxShow = true }) => (
       </div>
     )}
     <div className="header__right-part">
-      <button type="button" className="header__add-shop-button">
-        + 行きたいお店を追加
-      </button>
+      {isAddShopButtonShow && (
+        <button type="button" className="header__add-shop-button">
+          + 行きたいお店を追加
+        </button>
+      )}
       <a href="/mypage" className="header__to-mypage-link">
         <img src={IconPerson} alt="マイページ" />
       </a>
