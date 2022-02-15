@@ -3,7 +3,7 @@ import IconArrow from '@/assets/images/icon_arrow.svg';
 
 const ToHomeLink: React.FC = () => (
   <a href="/" className="to-home-link">
-    <img src={IconArrow} alt="to home" />
+    <img src={IconArrow} alt="ホームに戻る" />
     ホームに戻る
   </a>
 );

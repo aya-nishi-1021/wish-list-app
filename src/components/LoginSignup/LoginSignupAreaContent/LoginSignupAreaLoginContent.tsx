@@ -56,7 +56,7 @@ const LoginSignupAreaLoginContent: React.FC = () => {
       </button>
       <div className="login-signup-area-content__border">または</div>
       <button className="login-signup-area-content__sns" type="button" onClick={handleLoginWithGoogle}>
-        <img className="login-signup-area-content__sns-icon" src={IconGoogle} alt="google" />
+        <img className="login-signup-area-content__sns-icon" src={IconGoogle} alt="Google" />
         <span className="login-signup-area-content__sns-text">Google で続行</span>
       </button>
     </div>
