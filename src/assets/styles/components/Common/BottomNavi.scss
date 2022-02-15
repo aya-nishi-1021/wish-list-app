@@ -1,0 +1,26 @@
+.bottom-navi {
+  display: none;
+}
+
+@media screen and (max-width: $tb) {
+  .bottom-navi {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 60px;
+    width: 100%;
+    background-color: $theme-white;
+
+    &__link {
+      > img {
+        width: 24px;
+      }
+    }
+
+    &__add-shop-button {
+      font-size: 1.8rem;
+    }
+  }
+}
