@@ -12,14 +12,16 @@ const Header: React.FC<Props> = ({ isSearchBoxShow = true, isAddShopButtonShow =
     <h1 className="header__title">
       <a href="/">Food Wish List</a>
     </h1>
-    {isSearchBoxShow && (
-      <div className="header__center-part">
-        <input type="text" className="header__search-input" />
-        <button type="button" className="header__search-button">
-          <img src={IconSearch} alt="検索する" />
-        </button>
-      </div>
-    )}
+    <div className="header__center-part">
+      {isSearchBoxShow && (
+        <>
+          <input type="text" className="header__search-input" />
+          <button type="button" className="header__search-button">
+            <img src={IconSearch} alt="検索する" />
+          </button>
+        </>
+      )}
+    </div>
     <div className="header__right-part">
       {isAddShopButtonShow && (
         <button type="button" className="header__add-shop-button">
