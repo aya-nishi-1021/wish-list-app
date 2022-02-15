@@ -4,6 +4,7 @@ import '@/assets/styles/pages/MyPage.scss';
 import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
 import Header from '@/components/Common/Header';
+import BottomNavi from '@/components/Common/BottomNavi';
 import ToHomeLink from '@/components/MyPage/ToHomeLink';
 
 const MyPage: React.FC = () => {
@@ -39,6 +40,7 @@ const MyPage: React.FC = () => {
           ログアウト
         </button>
       </div>
+      <BottomNavi />
     </div>
   );
 };
