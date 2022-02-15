@@ -23,14 +23,14 @@ const Header: React.FC<Props> = ({ isSearchBoxShow = true, isAddShopButtonShow =
           <>
             <input type="text" className="header__search-input" />
             <button type="button" className="header__search-button">
-              <img src={IconSearch} alt="検索する" />
+              <img src={IconSearch} alt="検索" />
             </button>
           </>
         )}
         {!isSearchBoxShow && (
           <div className="header__heading">
             <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
-              <img src={IconArrow} alt="back page" />
+              <img src={IconArrow} alt="前ページに戻る" />
             </button>
             <h2 className="header__heading__text">{headingText}</h2>
           </div>
