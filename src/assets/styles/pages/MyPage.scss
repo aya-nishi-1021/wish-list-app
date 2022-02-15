@@ -31,6 +31,14 @@
   }
 }
 
+@media screen and (max-width: $tb) {
+  .mypage {
+    &__to-home-link {
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: $sp) {
   .mypage {
     padding: 84px 16px 0;
