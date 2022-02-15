@@ -4,7 +4,7 @@ import BottomNavi from '@/components/Common/BottomNavi';
 const Home: React.FC = () => (
   <div className="home">
     <Header isSearchBoxShow isAddShopButtonShow />
-    <BottomNavi />
+    <BottomNavi isAddShopButtonShow />
   </div>
 );
 

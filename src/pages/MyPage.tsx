@@ -40,7 +40,7 @@ const MyPage: React.FC = () => {
           ログアウト
         </button>
       </div>
-      <BottomNavi />
+      <BottomNavi isAddShopButtonShow={false} />
     </div>
   );
 };

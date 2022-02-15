@@ -4,7 +4,11 @@ import IconHomeFocused from '@/assets/images/icon_home_pink.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
 import IconPersonFocused from '@/assets/images/icon_person_pink.svg';
 
-const BottomNavi: React.FC = () => {
+type Props = {
+  isAddShopButtonShow: boolean;
+};
+
+const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true }) => {
   const { pathname } = window.location;
   const displayIconHome = pathname === '/' ? IconHomeFocused : IconHome;
   const displayIconPerson = pathname === '/mypage' ? IconPersonFocused : IconPerson;
@@ -14,9 +18,11 @@ const BottomNavi: React.FC = () => {
       <a href="/" className="bottom-navi__link">
         <img src={displayIconHome} alt="ホーム" />
       </a>
-      <button type="button" className="bottom-navi__add-shop-button">
-        ＋
-      </button>
+      {isAddShopButtonShow && (
+        <button type="button" className="bottom-navi__add-shop-button">
+          ＋
+        </button>
+      )}
       <a href="/mypage" className="bottom-navi__link">
         <img src={displayIconPerson} alt="マイページ" />
       </a>
