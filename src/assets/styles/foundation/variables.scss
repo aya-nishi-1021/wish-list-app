@@ -8,3 +8,10 @@ $theme-white: #fff;
 $pc: 1024px;
 $tb: 768px;
 $sp: 480px;
+
+// z-index
+$z-index: (
+  overlay: 2,
+  header: 1,
+  bottom-navi: 1,
+);
