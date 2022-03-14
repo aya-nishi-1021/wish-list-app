@@ -1,0 +1,15 @@
+.add-shop-dialog {
+  width: 100%;
+  height: calc(100% - 96px);
+  max-width: 800px;
+  margin: 48px;
+  border-radius: 8px;
+  background-color: $theme-white;
+}
+
+@media screen and (max-width: $sp) {
+  .add-shop-dialog {
+    height: calc(100% - 48px);
+    margin: 24px;
+  }
+}
