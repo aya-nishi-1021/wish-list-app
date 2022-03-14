@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/components/Common/Header.scss';
-import IconSearch from '@/assets/images/icon_search.svg';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
+import SearchBox from '@/components/Common/SearchBox';
 
 type Props = {
   isSearchBoxShow: boolean;
@@ -25,14 +25,7 @@ const Header: React.FC<Props> = ({
         <a href="/">Food Wish List</a>
       </h1>
       <div className="header__center-part">
-        {isSearchBoxShow && (
-          <>
-            <input type="text" className="header__search-input" />
-            <button type="button" className="header__search-button">
-              <img src={IconSearch} alt="検索" />
-            </button>
-          </>
-        )}
+        {isSearchBoxShow && <SearchBox />}
         {!isSearchBoxShow && (
           <div className="header__heading">
             <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
