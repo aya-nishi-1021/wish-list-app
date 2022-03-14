@@ -20,7 +20,7 @@ const Home: React.FC = () => {
         <ShopList />
         <MapView />
       </div>
-      <BottomNavi isAddShopButtonShow />
+      <BottomNavi isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
     </div>
   );
 };
