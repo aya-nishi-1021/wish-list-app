@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <Overlay isShow={isAddShopDialogShow} hideOverlay={() => setIsAddShopDialogShow(false)}>
-        <AddShopDialog />
+        <AddShopDialog closeDialog={() => setIsAddShopDialogShow(false)} />
       </Overlay>
       <Header isSearchBoxShow isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
       <div className="home__content-wrapper">
