@@ -6,9 +6,10 @@ import IconPersonFocused from '@/assets/images/icon_person_pink.svg';
 
 type Props = {
   isAddShopButtonShow: boolean;
+  handleClickAddShopButton?: VoidFunction;
 };
 
-const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true }) => {
+const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true, handleClickAddShopButton }) => {
   const { pathname } = window.location;
   const displayIconHome = pathname === '/' ? IconHomeFocused : IconHome;
   const displayIconPerson = pathname === '/mypage' ? IconPersonFocused : IconPerson;
@@ -19,7 +20,7 @@ const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true }) => {
         <img src={displayIconHome} alt="ホーム" />
       </a>
       {isAddShopButtonShow && (
-        <button type="button" className="bottom-navi__add-shop-button">
+        <button type="button" className="bottom-navi__add-shop-button" onClick={handleClickAddShopButton}>
           ＋
         </button>
       )}

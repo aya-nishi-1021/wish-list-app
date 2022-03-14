@@ -1,0 +1,28 @@
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  &__input {
+    padding: 0 8px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid $theme-brown-dark;
+    border-radius: 8px 0 0 8px;
+    background-color: $theme-white;
+    font-size: 1.4rem;
+  }
+
+  &__button {
+    padding: 0 8px;
+    height: 100%;
+    border-radius: 0 8px 8px 0;
+    background-color: $theme-brown-dark;
+
+    > img {
+      width: 20px;
+    }
+  }
+}

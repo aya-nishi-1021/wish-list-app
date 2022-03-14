@@ -4,6 +4,7 @@
 
 @media screen and (max-width: $tb) {
   .bottom-navi {
+    @include z-index(bottom-navi);
     position: fixed;
     bottom: 0;
     right: 0;
