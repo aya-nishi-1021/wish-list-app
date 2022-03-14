@@ -1,0 +1,12 @@
+.overlay {
+  @include z-index(overlay);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $theme-brown-dark, $alpha: 0.5);
+}
