@@ -1,6 +1,7 @@
 .home {
   &__content-wrapper {
     display: flex;
+    position: relative;
     padding: 60px 0 0;
     height: 100vh;
   }
@@ -8,7 +9,7 @@
   &__shop-list-wrapper {
     width: 50%;
 
-    &--map-view-expanded {
+    &--map-view {
       display: none;
     }
   }
@@ -16,16 +17,49 @@
   &__map-view-wrapper {
     width: 50%;
 
-    &--map-view-expanded {
+    &--map-view {
       width: 100%;
     }
   }
+
+  &__view-toggle-button-wrapper {
+    display: none;
+  }
 }
 
-@media screen and (max-width: $sp) {
+@media screen and (max-width: $tb) {
   .home {
     &__content-wrapper {
       padding: 60px 0 43px;
+    }
+
+    &__shop-list-wrapper {
+      display: block;
+      width: 100%;
+
+      &--map-view {
+        display: none;
+      }
+    }
+
+    &__map-view-wrapper {
+      display: none;
+      width: 0;
+
+      &--map-view {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__view-toggle-button-wrapper {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 59px;
+      margin: auto;
+      width: fit-content;
     }
   }
 }
