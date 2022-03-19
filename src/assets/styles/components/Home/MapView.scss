@@ -25,3 +25,11 @@
     }
   }
 }
+
+@media screen and (max-width: $tb) {
+  .map-view {
+    &__view-area-scale-button {
+      display: none;
+    }
+  }
+}
