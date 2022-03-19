@@ -1,0 +1,27 @@
+.map-view {
+  position: relative;
+  width: 100%;
+
+  &__view-area-scale-button {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: $theme-white;
+
+    &__img {
+      width: 16px;
+      &--map-view-area-expanded {
+        transform: rotate(180deg);
+      }
+    }
+
+    &__text {
+      margin-left: 4px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+}
