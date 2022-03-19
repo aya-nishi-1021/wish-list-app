@@ -3,12 +3,14 @@ import { useState } from 'react';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
 import Header from '@/components/Common/Header';
-import ShopList from '@/components/Home/ShopList';
+import ShopListView from '@/components/Home/ShopListView';
 import MapView from '@/components/Home/MapView';
 import BottomNavi from '@/components/Common/BottomNavi';
+import ViewToggleButton from '@/components/Home/ViewToggleButton';
 
 const Home: React.FC = () => {
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
+  const [isMapView, setIsMapView] = useState(false);
 
   return (
     <div className="home">
@@ -17,8 +19,23 @@ const Home: React.FC = () => {
       </Overlay>
       <Header isSearchBoxShow isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
       <div className="home__content-wrapper">
-        <ShopList />
-        <MapView />
+        <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
+          <ShopListView />
+        </div>
+        <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
+          <MapView
+            isMapViewExpanded={isMapView}
+            expandView={() => setIsMapView(true)}
+            contractView={() => setIsMapView(false)}
+          />
+        </div>
+        <div className="home__view-toggle-button-wrapper">
+          <ViewToggleButton
+            isShopListView={!isMapView}
+            showShopListView={() => setIsMapView(false)}
+            showMapView={() => setIsMapView(true)}
+          />
+        </div>
       </div>
       <BottomNavi isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
     </div>
