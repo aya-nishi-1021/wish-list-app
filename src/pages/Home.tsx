@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
 import Header from '@/components/Common/Header';
-import ShopList from '@/components/Home/ShopList';
+import ShopListView from '@/components/Home/ShopListView';
 import MapView from '@/components/Home/MapView';
 import BottomNavi from '@/components/Common/BottomNavi';
 import ViewToggleButton from '@/components/Home/ViewToggleButton';
@@ -19,8 +19,8 @@ const Home: React.FC = () => {
       </Overlay>
       <Header isSearchBoxShow isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
       <div className="home__content-wrapper">
-        <div className={`home__shop-list-wrapper${isMapView ? ' home__shop-list-wrapper--map-view' : ''}`}>
-          <ShopList />
+        <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
+          <ShopListView />
         </div>
         <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
           <MapView
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
         <div className="home__view-toggle-button-wrapper">
           <ViewToggleButton
             isShopListView={!isMapView}
-            showShopList={() => setIsMapView(false)}
+            showShopListView={() => setIsMapView(false)}
             showMapView={() => setIsMapView(true)}
           />
         </div>
