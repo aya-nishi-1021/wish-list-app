@@ -1,5 +1,31 @@
 .home {
   &__content-wrapper {
-    padding: 60px 0 43px;
+    display: flex;
+    padding: 60px 0 0;
+    height: 100vh;
+  }
+
+  &__shop-list-wrapper {
+    width: 50%;
+
+    &--map-view-expanded {
+      display: none;
+    }
+  }
+
+  &__map-view-wrapper {
+    width: 50%;
+
+    &--map-view-expanded {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: $sp) {
+  .home {
+    &__content-wrapper {
+      padding: 60px 0 43px;
+    }
   }
 }
