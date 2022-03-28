@@ -1,10 +1,14 @@
 import '@/assets/styles/components/Common/SearchBox.scss';
 import IconSearch from '@/assets/images/icon_search.svg';
 
-const SearchBox: React.FC = () => (
+type Props = {
+  handleClickSearchButton: VoidFunction;
+};
+
+const SearchBox: React.FC<Props> = ({ handleClickSearchButton }) => (
   <div className="search-box">
     <input type="text" className="search-box__input" />
-    <button type="button" className="search-box__button">
+    <button type="button" className="search-box__button" onClick={handleClickSearchButton}>
       <img src={IconSearch} alt="検索" />
     </button>
   </div>
