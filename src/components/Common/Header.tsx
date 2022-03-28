@@ -25,7 +25,7 @@ const Header: React.FC<Props> = ({
         <a href="/">Food Wish List</a>
       </h1>
       <div className="header__center-part">
-        {isSearchBoxShow && <SearchBox />}
+        {isSearchBoxShow && <SearchBox handleClickSearchButton={() => console.log('Header の検索ボタンをクリック')} />}
         {!isSearchBoxShow && (
           <div className="header__heading">
             <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
