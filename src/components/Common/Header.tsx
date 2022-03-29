@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/components/Common/Header.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
@@ -18,6 +19,11 @@ const Header: React.FC<Props> = ({
   handleClickAddShopButton,
 }) => {
   const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <header className="header">
@@ -25,7 +31,13 @@ const Header: React.FC<Props> = ({
         <a href="/">Food Wish List</a>
       </h1>
       <div className="header__center-part">
-        {isSearchBoxShow && <SearchBox handleClickSearchButton={() => console.log('Header の検索ボタンをクリック')} />}
+        {isSearchBoxShow && (
+          <SearchBox
+            value={inputValue}
+            changeValue={(e) => handleChange(e)}
+            handleClickSearchButton={() => console.log('Header の検索ボタンをクリック')}
+          />
+        )}
         {!isSearchBoxShow && (
           <div className="header__heading">
             <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
