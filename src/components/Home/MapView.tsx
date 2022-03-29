@@ -9,7 +9,7 @@ type Props = {
 
 const MapView: React.FC<Props> = ({ isMapViewExpanded, expandView, contractView }) => {
   const viewAreaScaleButtonImgAlt = isMapViewExpanded ? 'リストを表示する' : '地図エリアを拡大する';
-  const handleClickViewAreaScaleButton = () => {
+  const handleScaleMapView = () => {
     if (isMapViewExpanded) {
       contractView();
     } else {
@@ -19,7 +19,7 @@ const MapView: React.FC<Props> = ({ isMapViewExpanded, expandView, contractView 
 
   return (
     <div className="map-view">
-      <button type="button" className="map-view__view-area-scale-button" onClick={handleClickViewAreaScaleButton}>
+      <button type="button" className="map-view__view-area-scale-button" onClick={handleScaleMapView}>
         <img
           src={IconArrow}
           alt={viewAreaScaleButtonImgAlt}
