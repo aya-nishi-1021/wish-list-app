@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         <Overlay isShow={isAddShopDialogShow} hideOverlay={() => setIsAddShopDialogShow(false)}>
           <AddShopDialog closeDialog={() => setIsAddShopDialogShow(false)} />
         </Overlay>
-        <Header isSearchBoxShow isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
+        <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
           <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
             <ShopListView />
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
             />
           </div>
         </div>
-        <BottomNavi isAddShopButtonShow handleClickAddShopButton={() => setIsAddShopDialogShow(true)} />
+        <BottomNavi isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
       </div>
     </LoadScript>
   );

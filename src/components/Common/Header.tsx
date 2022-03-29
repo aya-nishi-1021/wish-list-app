@@ -9,14 +9,14 @@ type Props = {
   isSearchBoxShow: boolean;
   isAddShopButtonShow: boolean;
   headingText?: string;
-  handleClickAddShopButton?: VoidFunction;
+  handleAddShop?: VoidFunction;
 };
 
 const Header: React.FC<Props> = ({
   isSearchBoxShow = true,
   isAddShopButtonShow = true,
   headingText,
-  handleClickAddShopButton,
+  handleAddShop,
 }) => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
@@ -49,7 +49,7 @@ const Header: React.FC<Props> = ({
       </div>
       <div className="header__right-part">
         {isAddShopButtonShow && (
-          <button type="button" className="header__add-shop-button" onClick={handleClickAddShopButton}>
+          <button type="button" className="header__add-shop-button" onClick={handleAddShop}>
             + 行きたいお店を追加
           </button>
         )}
