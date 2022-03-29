@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Overlay: React.FC<Props> = ({ children, isShow = false, hideOverlay }) => {
-  const handleClickOverlay = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleHideOverlay = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // ダイアログの外側をクリックしたときのみオーバーレイを非表示にする
     if (event.target === event.currentTarget) hideOverlay();
   };
@@ -15,7 +15,7 @@ const Overlay: React.FC<Props> = ({ children, isShow = false, hideOverlay }) => 
   if (!isShow) return null;
 
   return (
-    <div className="overlay" onClick={handleClickOverlay} aria-hidden="true">
+    <div className="overlay" onClick={handleHideOverlay} aria-hidden="true">
       {children}
     </div>
   );

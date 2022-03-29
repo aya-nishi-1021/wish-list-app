@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/components/Common/Header.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
@@ -8,16 +9,21 @@ type Props = {
   isSearchBoxShow: boolean;
   isAddShopButtonShow: boolean;
   headingText?: string;
-  handleClickAddShopButton?: VoidFunction;
+  handleAddShop?: VoidFunction;
 };
 
 const Header: React.FC<Props> = ({
   isSearchBoxShow = true,
   isAddShopButtonShow = true,
   headingText,
-  handleClickAddShopButton,
+  handleAddShop,
 }) => {
   const navigate = useNavigate();
+
+  const [inputValue, setInputValue] = useState('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <header className="header">
@@ -25,7 +31,13 @@ const Header: React.FC<Props> = ({
         <a href="/">Food Wish List</a>
       </h1>
       <div className="header__center-part">
-        {isSearchBoxShow && <SearchBox />}
+        {isSearchBoxShow && (
+          <SearchBox
+            value={inputValue}
+            changeValue={(e) => handleChange(e)}
+            handleSearch={() => console.log('Header の検索ボタンをクリック')}
+          />
+        )}
         {!isSearchBoxShow && (
           <div className="header__heading">
             <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
@@ -37,7 +49,7 @@ const Header: React.FC<Props> = ({
       </div>
       <div className="header__right-part">
         {isAddShopButtonShow && (
-          <button type="button" className="header__add-shop-button" onClick={handleClickAddShopButton}>
+          <button type="button" className="header__add-shop-button" onClick={handleAddShop}>
             + 行きたいお店を追加
           </button>
         )}

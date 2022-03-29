@@ -8,7 +8,7 @@ type Props = {
 
 const ViewToggleButton: React.FC<Props> = ({ isShopListView, showShopListView, showMapView }) => {
   const text = isShopListView ? 'マップ' : 'リスト';
-  const handleClickViewToggleButton = () => {
+  const handleChangeView = () => {
     if (isShopListView) {
       showMapView();
     } else {
@@ -17,7 +17,7 @@ const ViewToggleButton: React.FC<Props> = ({ isShopListView, showShopListView, s
   };
 
   return (
-    <button className="view-toggle-button" type="button" onClick={handleClickViewToggleButton}>
+    <button className="view-toggle-button" type="button" onClick={handleChangeView}>
       {text}
     </button>
   );
