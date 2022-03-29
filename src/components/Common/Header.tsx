@@ -35,7 +35,7 @@ const Header: React.FC<Props> = ({
           <SearchBox
             value={inputValue}
             changeValue={(e) => handleChange(e)}
-            handleClickSearchButton={() => console.log('Header の検索ボタンをクリック')}
+            handleSearch={() => console.log('Header の検索ボタンをクリック')}
           />
         )}
         {!isSearchBoxShow && (
