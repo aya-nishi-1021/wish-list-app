@@ -19,8 +19,8 @@ const Header: React.FC<Props> = ({
   handleAddShop,
 }) => {
   const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState('');
 
+  const [inputValue, setInputValue] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
