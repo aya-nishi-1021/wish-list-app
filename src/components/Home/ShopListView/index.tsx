@@ -1,6 +1,6 @@
 import '@/assets/styles/components/Home/ShopListView.scss';
 import { ShopInfo } from '@/firebase';
-import ShopList from '@/components/Home/ShopList';
+import ShopList from '@/components/Home/ShopListView/ShopList';
 
 type Props = {
   wishList: ShopInfo[] | undefined;
