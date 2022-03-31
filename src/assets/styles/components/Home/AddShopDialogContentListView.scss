@@ -1,0 +1,29 @@
+.add-shop-dialog-content-list-view {
+  &__shop-number {
+    margin-bottom: 16px;
+    font-size: 1.6rem;
+  }
+
+  &__shop-list {
+    height: calc(100% - 91px);
+    overflow-y: scroll;
+  }
+
+  &__shop-list-item {
+    width: 100%;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid $theme-brown-dark;
+    text-align: left;
+
+    &__name {
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    &__address {
+      font-size: 1.6rem;
+    }
+  }
+}

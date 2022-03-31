@@ -1,0 +1,11 @@
+.add-shop-dialog-content-message-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 28px);
+  text-align: center;
+
+  &__text {
+    font-size: 1.6rem;
+  }
+}
