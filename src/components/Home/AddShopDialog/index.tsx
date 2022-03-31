@@ -2,7 +2,7 @@ import '@/assets/styles/components/Home/AddShopDialog.scss';
 import { useState } from 'react';
 import IconClose from '@/assets/images/icon_close.svg';
 import SearchBox from '@/components/Common/SearchBox';
-import AddShopDialogContent from '@/components/Home/AddShopDialogContent';
+import AddShopDialogContent from '@/components/Home/AddShopDialog/AddShopDialogContent';
 
 type Props = {
   closeDialog: VoidFunction;

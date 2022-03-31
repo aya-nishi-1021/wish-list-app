@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { SearchResultShopInfoList } from '@/components/Home/AddShopDialog';
-import AddShopDialogContentMessageView from '@/components/Home/AddShopDialogContentMessageView';
-import AddShopDialogContentListView from './AddShopDialogContentListView';
+import AddShopDialogContentMessageView from '@/components/Home/AddShopDialog/AddShopDialogContent/AddShopDialogContentMessageView';
+import AddShopDialogContentListView from '@/components/Home/AddShopDialog/AddShopDialogContent/AddShopDialogContentListView';
 
 type Props = {
   isSearching: boolean;
