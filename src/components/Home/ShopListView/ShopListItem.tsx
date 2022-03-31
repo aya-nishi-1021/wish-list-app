@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/ShopListItem.scss';
+import '@/assets/styles/components/Home/ShopListView/ShopListItem.scss';
 import { ShopInfo } from '@/firebase';
 
 type Props = {
