@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/AddShopDialog.scss';
+import '@/assets/styles/components/Home/AddShopDialog/index.scss';
 import { useState } from 'react';
 import IconClose from '@/assets/images/icon_close.svg';
 import SearchBox from '@/components/Common/SearchBox';

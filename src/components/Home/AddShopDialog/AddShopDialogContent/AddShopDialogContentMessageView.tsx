@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/AddShopDialogContentMessageView.scss';
+import '@/assets/styles/components/Home/AddShopDialog/AddShopDialogContent/AddShopDialogContentMessageView.scss';
 
 type Props = {
   text: string;
