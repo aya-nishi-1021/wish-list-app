@@ -17,18 +17,23 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => (
     </div>
     <div className="shop-list-item__info-wrapper">
       <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
-      <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating}</div>
+      <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating || '-'}</div>
       <div className="shop-list-item__info__item">
         電話: {shopInfo.phoneNumber ? <a href={`tel:${shopInfo.phoneNumber}`}>{shopInfo.phoneNumber}</a> : '-'}
       </div>
       <div className="shop-list-item__info__item">
         Webサイト:{' '}
-        <a href={shopInfo.website} target="_blank" rel="noopener noreferrer">
-          {shopInfo.website}
-        </a>
+        {shopInfo.website ? (
+          <a href={shopInfo.website} target="_blank" rel="noopener noreferrer">
+            {shopInfo.website}
+          </a>
+        ) : (
+          '-'
+        )}
       </div>
+      {/** TODO: 営業時間をトグルで表示する */}
       <div className="shop-list-item__info__item">営業時間: {shopInfo.isOpen ? '営業中' : '営業時間外'} ▼</div>
-      <div className="shop-list-item__info__item">住所: {shopInfo.address}</div>
+      <div className="shop-list-item__info__item">住所: {shopInfo.address || '-'}</div>
     </div>
   </li>
 );
