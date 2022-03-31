@@ -71,7 +71,6 @@ export type ShopInfo = {
   rating: number | undefined;
   phoneNumber: string | undefined;
   website: string | undefined;
-  isOpen: boolean | undefined;
   weekdayText: string[] | undefined;
   address: string | undefined;
 };
