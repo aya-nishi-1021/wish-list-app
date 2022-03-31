@@ -7,7 +7,20 @@ type Props = {
 };
 
 const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
+
+  const { google } = window;
+  const service = new google.maps.places.PlacesService(document.createElement('div'));
+
+  if (!shopInfo.placeId) return null;
+  service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (!r) return;
+      if (!r.opening_hours) return;
+      setIsOpen(r.opening_hours.isOpen() || false);
+    }
+  });
   const handleToggleOpeningHours = () => {
     setIsOpeningHoursShow(!isOpeningHoursShow);
   };
@@ -39,7 +52,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
           )}
         </div>
         <div className="shop-list-item__info__item">
-          営業時間: {shopInfo.isOpen ? '営業中' : '営業時間外'}
+          営業時間: {isOpen ? '営業中' : '営業時間外'}
           {shopInfo.weekdayText && (
             <button type="button" onClick={handleToggleOpeningHours}>
               {isOpeningHoursShow ? '▲' : '▼'}
