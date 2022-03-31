@@ -65,12 +65,13 @@ export const fetchWishList = async () => {
   return data;
 };
 
-type ShopInfo = {
+export type ShopInfo = {
   placeId: string | undefined;
   name: string | undefined;
   rating: number | undefined;
   phoneNumber: string | undefined;
   website: string | undefined;
+  isOpen: boolean | undefined;
   weekdayText: string[] | undefined;
   address: string | undefined;
 };
