@@ -1,6 +1,8 @@
 import '@/assets/styles/pages/Home.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LoadScript } from '@react-google-maps/api';
+import { DocumentData } from 'firebase/firestore';
+import { fetchWishList } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
 import Header from '@/components/Common/Header';
@@ -15,6 +17,17 @@ type Libraries = ('drawing' | 'geometry' | 'localContext' | 'places' | 'visualiz
 const libraries: Libraries = ['places'];
 
 const Home: React.FC = () => {
+  const [wishList, setWishList] = useState<DocumentData[] | undefined>([]);
+
+  useEffect(() => {
+    const f = async () => {
+      const data = await fetchWishList();
+      setWishList(data);
+    };
+    void f();
+  }, []);
+  console.log(wishList);
+
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
 

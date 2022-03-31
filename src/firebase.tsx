@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import { FirebaseContext } from './contexts';
 
 const firebaseConfig = {
@@ -49,6 +50,37 @@ export const resetPassword = (email: string) => {
     url: `${process.env.REACT_APP_MAIL_URL!}?email=${email}`,
   };
   return app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+};
+
+export const db = firebase.firestore();
+
+export const fetchWishList = async () => {
+  let data;
+  try {
+    const snapShot = await db.collection('wishList').get();
+    data = snapShot.docs.map((doc) => doc.data());
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
+
+type ShopInfo = {
+  placeId: string | undefined;
+  name: string | undefined;
+  rating: number | undefined;
+  phoneNumber: string | undefined;
+  website: string | undefined;
+  weekdayText: string[] | undefined;
+  address: string | undefined;
+};
+
+export const addWishList = async (shopInfo: ShopInfo) => {
+  try {
+    await db.collection('wishList').add(shopInfo);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const FirebaseProvider: React.FC = ({ children }) => {
