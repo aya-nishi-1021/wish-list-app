@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/ShopList.scss';
+import '@/assets/styles/components/Home/ShopListView/ShopList.scss';
 import { ShopInfo } from '@/firebase';
 import ShopListItem from '@/components/Home/ShopListView/ShopListItem';
 
