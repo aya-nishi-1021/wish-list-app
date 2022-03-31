@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/AddShopDialogContentListView.scss';
+import '@/assets/styles/components/Home/AddShopDialog/AddShopDialogContent/AddShopDialogContentListView.scss';
 import { Dispatch, SetStateAction } from 'react';
 import { fetchWishList, addWishList } from '@/firebase';
 import { SearchResultShopInfo, SearchResultShopInfoList } from '@/components/Home/AddShopDialog';
