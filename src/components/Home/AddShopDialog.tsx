@@ -2,25 +2,36 @@ import '@/assets/styles/components/Home/AddShopDialog.scss';
 import { useState } from 'react';
 import IconClose from '@/assets/images/icon_close.svg';
 import SearchBox from '@/components/Common/SearchBox';
+import AddShopDialogContent from '@/components/Home/AddShopDialogContent';
 
 type Props = {
   closeDialog: VoidFunction;
 };
+
+export type SearchResultShopInfo = {
+  placeId: string | undefined;
+  name: string | undefined;
+  address: string | undefined;
+};
+export type SearchResultShopInfoList = SearchResultShopInfo[];
 
 const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
   const [inputValue, setInputValue] = useState('');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     setIsSearched(false);
-    setShopInfoList([]);
+    setSelectedShopName(null);
+    setIsDuplicateShopInfo(false);
+    setIsAddedShopInfo(false);
+    setSearchResultShopInfoList([]);
   };
 
   const [isSearching, setIsSearching] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
-
-  type ShopInfo = { placeId: string | undefined; name: string | undefined; address: string | undefined };
-  type ShopInfoList = ShopInfo[];
-  const [shopInfoList, setShopInfoList] = useState<ShopInfoList>([]);
+  const [selectedShopName, setSelectedShopName] = useState<string | null>(null);
+  const [isDuplicateShopInfo, setIsDuplicateShopInfo] = useState(false);
+  const [isAddedShopInfo, setIsAddedShopInfo] = useState(false);
+  const [searchResultShopInfoList, setSearchResultShopInfoList] = useState<SearchResultShopInfoList>([]);
 
   const searchShop = () => {
     // 入力値が空文字の場合は何もしない
@@ -35,8 +46,8 @@ const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
     const { google } = window;
     const service = new google.maps.places.PlacesService(document.createElement('div'));
 
-    const searchResultShopInfoList: ShopInfoList = [];
-    const setSearchResultShopInfoList = (results: google.maps.places.PlaceResult[] | null) => {
+    const searchResultShopInfoList: SearchResultShopInfoList = [];
+    const addSearchResultShopInfoList = (results: google.maps.places.PlaceResult[] | null) => {
       if (!results) return;
       results.forEach((result) => {
         searchResultShopInfoList.push({
@@ -46,14 +57,15 @@ const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
         });
       });
     };
+
     service.textSearch(request, (results, status, pagination) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         if (pagination?.hasNextPage) {
           pagination.nextPage();
-          setSearchResultShopInfoList(results);
+          addSearchResultShopInfoList(results);
         } else {
-          setSearchResultShopInfoList(results);
-          setShopInfoList(searchResultShopInfoList);
+          addSearchResultShopInfoList(results);
+          setSearchResultShopInfoList(searchResultShopInfoList);
           setIsSearched(true);
           setIsSearching(false);
         }
@@ -69,20 +81,17 @@ const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
       <div className="add-shop-dialog__search-box-wrapper">
         <SearchBox value={inputValue} changeValue={(e) => handleChange(e)} handleSearch={() => searchShop()} />
       </div>
-      {isSearching && <div>検索中...</div>}
-      {isSearched && !isSearching && (
-        <>
-          <div className="add-shop-dialog__shop-number">検索結果 {shopInfoList.length}件</div>
-          <ul className="add-shop-dialog__shop-list">
-            {shopInfoList.map((shopInfo: ShopInfo) => (
-              <li className="add-shop-dialog__shop-list-item" key={shopInfo.placeId}>
-                <div className="add-shop-dialog__shop-list-item__name">{shopInfo.name}</div>
-                <div className="add-shop-dialog__shop-list-item__address">{shopInfo.address}</div>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <AddShopDialogContent
+        isSearching={isSearching}
+        isSearched={isSearched}
+        selectedShopName={selectedShopName}
+        setSelectedShopName={setSelectedShopName}
+        isDuplicateShopInfo={isDuplicateShopInfo}
+        setIsDuplicateShopInfo={setIsDuplicateShopInfo}
+        isAddedShopInfo={isAddedShopInfo}
+        setIsAddedShopInfo={setIsAddedShopInfo}
+        searchResultShopInfoList={searchResultShopInfoList}
+      />
     </div>
   );
 };
