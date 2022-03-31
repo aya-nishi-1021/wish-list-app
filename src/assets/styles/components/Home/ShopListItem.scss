@@ -41,6 +41,10 @@
     &__item {
       margin-bottom: 4px;
       font-size: 1.3rem;
+
+      > a {
+        color: $theme-brown-dark;
+      }
     }
   }
 }

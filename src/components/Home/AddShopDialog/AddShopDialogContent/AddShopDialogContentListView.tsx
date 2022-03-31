@@ -45,6 +45,7 @@ const AddShopDialogContentListView: React.FC<Props> = ({
           rating: r.rating,
           phoneNumber: r.formatted_phone_number,
           website: r.website,
+          isOpen: r.opening_hours?.isOpen(),
           weekdayText: r.opening_hours?.weekday_text,
           address: r.formatted_address,
         });
