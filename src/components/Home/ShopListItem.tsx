@@ -18,7 +18,9 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => (
     <div className="shop-list-item__info-wrapper">
       <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
       <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating}</div>
-      <div className="shop-list-item__info__item">電話: {shopInfo.phoneNumber}</div>
+      <div className="shop-list-item__info__item">
+        電話: {shopInfo.phoneNumber ? <a href={`tel:${shopInfo.phoneNumber}`}>{shopInfo.phoneNumber}</a> : '-'}
+      </div>
       <div className="shop-list-item__info__item">
         Webサイト:{' '}
         <a href={shopInfo.website} target="_blank" rel="noopener noreferrer">
