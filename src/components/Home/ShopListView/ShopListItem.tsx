@@ -33,6 +33,11 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => (
       </div>
       {/** TODO: 営業時間をトグルで表示する */}
       <div className="shop-list-item__info__item">営業時間: {shopInfo.isOpen ? '営業中' : '営業時間外'} ▼</div>
+      <ul className="shop-list-item__info__item__opening-hours">
+        {shopInfo.weekdayText?.map((text) => (
+          <li>{text}</li>
+        ))}
+      </ul>
       <div className="shop-list-item__info__item">住所: {shopInfo.address || '-'}</div>
     </div>
   </li>
