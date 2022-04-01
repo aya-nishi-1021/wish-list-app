@@ -3,11 +3,11 @@ import IconSearch from '@/assets/images/icon_search.svg';
 
 type Props = {
   value: string;
-  changeValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChangeValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearch: VoidFunction;
 };
 
-const SearchBox: React.FC<Props> = ({ value, changeValue, handleSearch }) => {
+const SearchBox: React.FC<Props> = ({ value, handleChangeValue, handleSearch }) => {
   const handlePressEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -21,7 +21,7 @@ const SearchBox: React.FC<Props> = ({ value, changeValue, handleSearch }) => {
         type="text"
         className="search-box__input"
         value={value}
-        onChange={(e) => changeValue(e)}
+        onChange={(e) => handleChangeValue(e)}
         onKeyPress={(e) => handlePressEnter(e)}
       />
       <button type="button" className="search-box__button" onClick={handleSearch}>

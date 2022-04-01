@@ -39,7 +39,7 @@ const Home: React.FC = () => {
     <LoadScript googleMapsApiKey={key} libraries={libraries}>
       <div className="home">
         <Overlay isShow={isAddShopDialogShow} hideOverlay={handleCloseDialog}>
-          <AddShopDialog closeDialog={handleCloseDialog} />
+          <AddShopDialog handleCloseDialog={handleCloseDialog} />
         </Overlay>
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
@@ -49,15 +49,15 @@ const Home: React.FC = () => {
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
             <MapView
               isMapViewExpanded={isMapView}
-              expandView={() => setIsMapView(true)}
-              contractView={() => setIsMapView(false)}
+              handleExpandView={() => setIsMapView(true)}
+              handleContractView={() => setIsMapView(false)}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
             <ViewToggleButton
               isShopListView={!isMapView}
-              showShopListView={() => setIsMapView(false)}
-              showMapView={() => setIsMapView(true)}
+              handleShowShopListView={() => setIsMapView(false)}
+              handleShowMapView={() => setIsMapView(true)}
             />
           </div>
         </div>
