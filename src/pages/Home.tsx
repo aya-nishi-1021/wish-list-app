@@ -49,8 +49,8 @@ const Home: React.FC = () => {
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
             <MapView
               isMapViewExpanded={isMapView}
-              expandView={() => setIsMapView(true)}
-              contractView={() => setIsMapView(false)}
+              handleExpandView={() => setIsMapView(true)}
+              handleContractView={() => setIsMapView(false)}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
