@@ -21,7 +21,7 @@ const Header: React.FC<Props> = ({
   const navigate = useNavigate();
 
   const [inputValue, setInputValue] = useState('');
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -34,7 +34,7 @@ const Header: React.FC<Props> = ({
         {isSearchBoxShow && (
           <SearchBox
             value={inputValue}
-            changeValue={(e) => handleChange(e)}
+            handleChangeValue={(e) => handleChangeValue(e)}
             handleSearch={() => console.log('Header の検索ボタンをクリック')}
           />
         )}

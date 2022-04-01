@@ -17,7 +17,7 @@ export type SearchResultShopInfoList = SearchResultShopInfo[];
 
 const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
   const [inputValue, setInputValue] = useState('');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     setIsSearched(false);
     setSelectedShopName(null);
@@ -79,7 +79,11 @@ const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
         <img src={IconClose} alt="ダイアログを閉じる" />
       </button>
       <div className="add-shop-dialog__search-box-wrapper">
-        <SearchBox value={inputValue} changeValue={(e) => handleChange(e)} handleSearch={() => searchShop()} />
+        <SearchBox
+          value={inputValue}
+          handleChangeValue={(e) => handleChangeValue(e)}
+          handleSearch={() => searchShop()}
+        />
       </div>
       <AddShopDialogContent
         isSearching={isSearching}
