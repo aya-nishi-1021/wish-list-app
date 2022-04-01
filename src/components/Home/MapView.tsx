@@ -3,17 +3,17 @@ import IconArrow from '@/assets/images/icon_arrow.svg';
 
 type Props = {
   isMapViewExpanded: boolean;
-  handleExpandView: VoidFunction;
-  handleContractView: VoidFunction;
+  expandView: VoidFunction;
+  contractView: VoidFunction;
 };
 
-const MapView: React.FC<Props> = ({ isMapViewExpanded, handleExpandView, handleContractView }) => {
+const MapView: React.FC<Props> = ({ isMapViewExpanded, expandView, contractView }) => {
   const viewAreaScaleButtonImgAlt = isMapViewExpanded ? 'リストを表示する' : '地図エリアを拡大する';
   const handleScaleMapView = () => {
     if (isMapViewExpanded) {
-      handleContractView();
+      contractView();
     } else {
-      handleExpandView();
+      expandView();
     }
   };
 

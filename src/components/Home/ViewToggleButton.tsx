@@ -2,17 +2,17 @@ import '@/assets/styles/components/Home/ViewToggleButton.scss';
 
 type Props = {
   isShopListView: boolean;
-  handleShowShopListView: VoidFunction;
-  handleShowMapView: VoidFunction;
+  showShopListView: VoidFunction;
+  showMapView: VoidFunction;
 };
 
-const ViewToggleButton: React.FC<Props> = ({ isShopListView, handleShowShopListView, handleShowMapView }) => {
+const ViewToggleButton: React.FC<Props> = ({ isShopListView, showShopListView, showMapView }) => {
   const text = isShopListView ? 'マップ' : 'リスト';
   const handleChangeView = () => {
     if (isShopListView) {
-      handleShowMapView();
+      showMapView();
     } else {
-      handleShowShopListView();
+      showShopListView();
     }
   };
 
