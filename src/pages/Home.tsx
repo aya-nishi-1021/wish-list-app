@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
 
-  const handleCloseDialog = async () => {
+  const closeDialog = async () => {
     setIsAddShopDialogShow(false);
     const data = await fetchWishList();
     setWishList(data as ShopInfo[]);
@@ -38,8 +38,8 @@ const Home: React.FC = () => {
   return (
     <LoadScript googleMapsApiKey={key} libraries={libraries}>
       <div className="home">
-        <Overlay isShow={isAddShopDialogShow} hideOverlay={handleCloseDialog}>
-          <AddShopDialog handleCloseDialog={handleCloseDialog} />
+        <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
+          <AddShopDialog handleCloseDialog={closeDialog} />
         </Overlay>
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
@@ -49,15 +49,15 @@ const Home: React.FC = () => {
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
             <MapView
               isMapViewExpanded={isMapView}
-              handleExpandView={() => setIsMapView(true)}
-              handleContractView={() => setIsMapView(false)}
+              expandView={() => setIsMapView(true)}
+              contractView={() => setIsMapView(false)}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
             <ViewToggleButton
               isShopListView={!isMapView}
-              handleShowShopListView={() => setIsMapView(false)}
-              handleShowMapView={() => setIsMapView(true)}
+              showShopListView={() => setIsMapView(false)}
+              showMapView={() => setIsMapView(true)}
             />
           </div>
         </div>
