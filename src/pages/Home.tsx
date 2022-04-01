@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
 
-  const handleCloseDialog = async () => {
+  const closeDialog = async () => {
     setIsAddShopDialogShow(false);
     const data = await fetchWishList();
     setWishList(data as ShopInfo[]);
@@ -38,8 +38,8 @@ const Home: React.FC = () => {
   return (
     <LoadScript googleMapsApiKey={key} libraries={libraries}>
       <div className="home">
-        <Overlay isShow={isAddShopDialogShow} hideOverlay={handleCloseDialog}>
-          <AddShopDialog handleCloseDialog={handleCloseDialog} />
+        <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
+          <AddShopDialog handleCloseDialog={closeDialog} />
         </Overlay>
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
