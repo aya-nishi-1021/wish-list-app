@@ -39,7 +39,7 @@ const Home: React.FC = () => {
     <LoadScript googleMapsApiKey={key} libraries={libraries}>
       <div className="home">
         <Overlay isShow={isAddShopDialogShow} hideOverlay={handleCloseDialog}>
-          <AddShopDialog closeDialog={handleCloseDialog} />
+          <AddShopDialog handleCloseDialog={handleCloseDialog} />
         </Overlay>
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
