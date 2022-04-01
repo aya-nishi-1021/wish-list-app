@@ -79,11 +79,7 @@ const AddShopDialog: React.FC<Props> = ({ handleCloseDialog }) => {
         <img src={IconClose} alt="ダイアログを閉じる" />
       </button>
       <div className="add-shop-dialog__search-box-wrapper">
-        <SearchBox
-          value={inputValue}
-          handleChangeValue={(e) => changeValue(e)}
-          handleSearch={() => searchShop()}
-        />
+        <SearchBox value={inputValue} handleChangeValue={(e) => changeValue(e)} handleSearch={() => searchShop()} />
       </div>
       <AddShopDialogContent
         isSearching={isSearching}
