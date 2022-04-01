@@ -47,6 +47,10 @@ const AddShopDialogContentListView: React.FC<Props> = ({
           website: r.website,
           weekdayText: r.opening_hours?.weekday_text,
           address: r.formatted_address,
+          position: {
+            lat: r.geometry?.location?.lat() || 0,
+            lng: r.geometry?.location?.lng() || 0,
+          },
         });
       }
     });
