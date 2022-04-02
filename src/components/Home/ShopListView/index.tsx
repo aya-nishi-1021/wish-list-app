@@ -8,7 +8,7 @@ type Props = {
 
 const ShopListView: React.FC<Props> = ({ wishList }) => (
   <div className="shop-list-view">
-    <div className="shop-list-view__description">地図の選択エリアにあるお店 {wishList ? wishList.length : 0}件</div>
+    <div className="shop-list-view__description">全 {wishList ? wishList.length : 0}件</div>
     {wishList && <ShopList wishList={wishList} />}
   </div>
 );
