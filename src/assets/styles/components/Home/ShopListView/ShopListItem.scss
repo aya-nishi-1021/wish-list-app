@@ -4,6 +4,7 @@
   padding-bottom: 16px;
   margin-bottom: 16px;
   border-bottom: 2px solid $theme-brown-dark;
+  word-break: break-all;
 
   &:last-child {
     border-bottom: none;
