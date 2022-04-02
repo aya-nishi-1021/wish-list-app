@@ -25,15 +25,31 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
     setIsOpeningHoursShow(!isOpeningHoursShow);
   };
 
+  const subImages = [shopInfo.images[1], shopInfo.images[2], shopInfo.images[3]];
+
   return (
     <li className="shop-list-item">
       <div className="shop-list-item__image-wrapper">
-        <div className="shop-list-item__main-image">ダミー画像1</div>
-        <div className="shop-list-item__sub-image-wrapper">
-          <div className="shop-list-item__sub-image">ダミー画像2</div>
-          <div className="shop-list-item__sub-image">ダミー画像3</div>
-          <div className="shop-list-item__sub-image">ダミー画像4</div>
+        <div className="shop-list-item__main-image">
+          {shopInfo.images[0] ? (
+            <img src={shopInfo.images[0]} alt="お店の写真" />
+          ) : (
+            <div className="shop-list-item__main-image__no-image">
+              <span>no image</span>
+            </div>
+          )}
         </div>
+        {!subImages.every((image) => image === undefined) && (
+          <div className="shop-list-item__sub-image-wrapper">
+            {subImages.map((image) =>
+              image ? (
+                <div className="shop-list-item__sub-image" key={image}>
+                  <img src={image} alt="お店の写真" />
+                </div>
+              ) : null
+            )}
+          </div>
+        )}
       </div>
       <div className="shop-list-item__info-wrapper">
         <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>

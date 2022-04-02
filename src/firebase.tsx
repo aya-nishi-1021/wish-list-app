@@ -53,6 +53,10 @@ export const resetPassword = (email: string) => {
 };
 
 export const db = firebase.firestore();
+firebase.firestore().settings({
+  ignoreUndefinedProperties: true,
+  merge: true,
+});
 
 export const fetchWishList = async () => {
   let data;
@@ -67,6 +71,7 @@ export const fetchWishList = async () => {
 
 export type ShopInfo = {
   placeId: string | undefined;
+  images: string[];
   name: string | undefined;
   rating: number | undefined;
   phoneNumber: string | undefined;
