@@ -8,9 +8,11 @@ type Props = {
   wishList: ShopInfo[] | undefined;
   selectedShop: ShopInfo | null;
   setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
+  isOrdered: boolean;
+  setIsOrdered: Dispatch<SetStateAction<boolean>>;
 };
 
-const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop }) => {
+const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop, isOrdered, setIsOrdered }) => {
   const description = selectedShop ? '選択中のお店' : `全 ${wishList ? wishList.length : 0}件`;
   let shopList: ShopInfo[];
   if (selectedShop) {
@@ -32,6 +34,17 @@ const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop
           </button>
         )}
       </div>
+      {!selectedShop && (
+        <div className="shop-list-view__order">
+          <button
+            type="button"
+            className={`shop-list-view__order-button${isOrdered ? ' shop-list-view__order-button--selected' : ''}`}
+            onClick={() => setIsOrdered(!isOrdered)}
+          >
+            評価順
+          </button>
+        </div>
+      )}
       <ShopList shopList={shopList} />
     </div>
   );
