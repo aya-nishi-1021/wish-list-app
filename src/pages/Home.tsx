@@ -20,14 +20,21 @@ const Home: React.FC = () => {
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
   const [selectedShop, setSelectedShop] = useState<ShopInfo | null>(null);
+  const [isOrdered, setIsOrdered] = useState(false);
 
   useEffect(() => {
-    const f = async () => {
-      const data = await fetchWishList();
-      setWishList(data as ShopInfo[]);
-    };
-    void f();
-  }, []);
+    void fetchAndSetWishList(isOrdered);
+  }, [isOrdered]);
+
+  const fetchAndSetWishList = async (isOrdered: boolean) => {
+    let data;
+    if (isOrdered) {
+      data = await fetchWishList('rating');
+    } else {
+      data = await fetchWishList();
+    }
+    setWishList(data as ShopInfo[]);
+  };
 
   const closeDialog = async () => {
     setIsAddShopDialogShow(false);
@@ -44,7 +51,13 @@ const Home: React.FC = () => {
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
           <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
-            <ShopListView wishList={wishList} selectedShop={selectedShop} setSelectedShop={setSelectedShop} />
+            <ShopListView
+              wishList={wishList}
+              selectedShop={selectedShop}
+              setSelectedShop={setSelectedShop}
+              isOrdered={isOrdered}
+              setIsOrdered={setIsOrdered}
+            />
           </div>
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
             <MapView
