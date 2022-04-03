@@ -32,7 +32,7 @@ const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop
           </button>
         )}
       </div>
-      <ShopList wishList={shopList} />
+      <ShopList shopList={shopList} />
     </div>
   );
 };
