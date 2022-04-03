@@ -3,12 +3,12 @@ import { ShopInfo } from '@/firebase';
 import ShopListItem from '@/components/Home/ShopListView/ShopListItem';
 
 type Props = {
-  wishList: ShopInfo[];
+  shopList: ShopInfo[];
 };
 
-const ShopList: React.FC<Props> = ({ wishList }) => (
+const ShopList: React.FC<Props> = ({ shopList }) => (
   <ul className="shop-list">
-    {wishList.map((shopInfo: ShopInfo) => (
+    {shopList.map((shopInfo: ShopInfo) => (
       <ShopListItem shopInfo={shopInfo} key={shopInfo.placeId} />
     ))}
   </ul>

@@ -17,6 +17,9 @@ const libraries: Libraries = ['places'];
 
 const Home: React.FC = () => {
   const [wishList, setWishList] = useState<ShopInfo[] | undefined>([]);
+  const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
+  const [isMapView, setIsMapView] = useState(false);
+  const [selectedShop, setSelectedShop] = useState<ShopInfo | null>(null);
 
   useEffect(() => {
     const f = async () => {
@@ -25,9 +28,6 @@ const Home: React.FC = () => {
     };
     void f();
   }, []);
-
-  const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
-  const [isMapView, setIsMapView] = useState(false);
 
   const closeDialog = async () => {
     setIsAddShopDialogShow(false);
@@ -44,14 +44,16 @@ const Home: React.FC = () => {
         <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
         <div className="home__content-wrapper">
           <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
-            <ShopListView wishList={wishList} />
+            <ShopListView wishList={wishList} selectedShop={selectedShop} setSelectedShop={setSelectedShop} />
           </div>
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
             <MapView
               wishList={wishList}
+              selectedShop={selectedShop}
               isMapViewExpanded={isMapView}
               expandView={() => setIsMapView(true)}
               contractView={() => setIsMapView(false)}
+              setSelectedShop={setSelectedShop}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
