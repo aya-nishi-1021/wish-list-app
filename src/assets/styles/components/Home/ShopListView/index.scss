@@ -3,9 +3,26 @@
   width: 100%;
   height: 100%;
 
-  &__description {
+  &__navi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20px 12px 60px;
+  }
+
+  &__description {
     font-size: 1.4rem;
+  }
+
+  &__show-all-button {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+
+    > img {
+      width: 8px;
+      margin-right: 8px;
+    }
   }
 }
 
