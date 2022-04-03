@@ -84,19 +84,39 @@
     }
 
     &__main-image {
+      position: relative;
       width: 100%;
-      max-width: $sp;
-      height: auto;
+
+      &::before {
+        display: block;
+        content: '';
+        padding-top: 100%;
+      }
+
+      > img {
+        position: absolute;
+        top: 0;
+      }
+
+      &__no-image {
+        position: absolute;
+        top: 0;
+        display: flex;
+      }
     }
 
     &__sub-image-wrapper {
       width: 100%;
-      max-width: $sp;
     }
 
     &__sub-image {
+      position: relative;
       width: 32%;
-      height: 32%;
+
+      > img {
+        position: absolute;
+        top: 0;
+      }
     }
   }
 }
