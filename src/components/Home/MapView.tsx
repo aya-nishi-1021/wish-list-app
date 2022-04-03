@@ -7,6 +7,7 @@ import IconPin from '@/assets/images/icon_pin.svg';
 import IconPinSelected from '@/assets/images/icon_pin_selected.svg';
 
 type Props = {
+  isMapView: boolean;
   wishList: ShopInfo[] | undefined;
   selectedShop: ShopInfo | null;
   isMapViewExpanded: boolean;
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const MapView: React.FC<Props> = ({
+  isMapView,
   wishList,
   selectedShop,
   isMapViewExpanded,
@@ -71,7 +73,7 @@ const MapView: React.FC<Props> = ({
       });
       map.fitBounds(bounds);
     }
-  }, [map, wishList, defaultCenter, selectedShop]);
+  }, [isMapView, map, wishList, defaultCenter, selectedShop]);
 
   const handleSelectShop = (event: google.maps.MapMouseEvent, shopInfo: ShopInfo) => {
     event.stop();
