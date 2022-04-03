@@ -64,14 +64,14 @@ const MapView: React.FC<Props> = ({
       map.setCenter(wishList[0].position);
       map.setZoom(14);
     }
-    if (map && wishList && wishList.length > 1) {
+    if (map && !selectedShop && wishList && wishList.length > 1) {
       const bounds = new window.google.maps.LatLngBounds();
       wishList.forEach((shopInfo: ShopInfo) => {
         bounds.extend(shopInfo.position);
       });
       map.fitBounds(bounds);
     }
-  }, [map, wishList, defaultCenter]);
+  }, [map, wishList, defaultCenter, selectedShop]);
 
   const handleSelectShop = (event: google.maps.MapMouseEvent, shopInfo: ShopInfo) => {
     event.stop();
