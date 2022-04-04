@@ -1,12 +1,12 @@
 .shop-list {
   margin-top: 12px;
   padding: 0 20px 0 60px;
-  height: calc(100% - 26px);
+  height: calc(100% - 64px);
   overflow-y: scroll;
 }
 
 @media screen and (max-width: $tb) {
   .shop-list {
-    padding: 0 16px 48px;
+    padding: 0 16px 28px;
   }
 }
