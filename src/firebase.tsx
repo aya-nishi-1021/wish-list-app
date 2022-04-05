@@ -80,6 +80,16 @@ export const fetchWishListByRating = async () => {
   return data;
 };
 
+export const fetchWishListByName = async (name: string) => {
+  const data = (await fetchWishList()) as ShopInfo[];
+  if (!data) return undefined;
+  const sortedData = data.filter((shopInfo: ShopInfo) => {
+    if (!shopInfo.name) return false;
+    return shopInfo.name.toLowerCase().indexOf(name) > -1;
+  });
+  return sortedData;
+};
+
 export type ShopInfo = {
   placeId: string | undefined;
   images: string[];

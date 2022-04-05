@@ -31,7 +31,7 @@ const ShopListView: React.FC<Props> = ({
     description = '選択中のお店';
     displayShopList = [selectedShop];
   } else if (searchedShopList.length > 0) {
-    description = '検索結果';
+    description = `検索結果 ${searchedShopList.length}件`;
     displayShopList = searchedShopList;
   } else if (wishList) {
     description = `全 ${wishList.length}件`;

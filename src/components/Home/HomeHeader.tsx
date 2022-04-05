@@ -1,6 +1,6 @@
 import '@/assets/styles/components/Home/HomeHeader.scss';
 import { Dispatch, SetStateAction } from 'react';
-import { ShopInfo } from '@/firebase';
+import { fetchWishListByName, ShopInfo } from '@/firebase';
 import IconPerson from '@/assets/images/icon_person.svg';
 import SearchBox from '@/components/Common/SearchBox';
 
@@ -23,43 +23,14 @@ const HomeHeader: React.FC<Props> = ({
     setSearchText(e.target.value);
   };
 
-  const searchShop = () => {
+  const searchShop = async () => {
     if (!searchText) {
       setSearchedShopList([]);
       return;
     }
     setSelectedShop(null);
-    const dummySearchedShopList: ShopInfo[] = [
-      {
-        placeId: 'placeId-01',
-        images: [],
-        name: 'JR茨木駅',
-        rating: undefined,
-        phoneNumber: 'phoneNumber',
-        website: 'website',
-        weekdayText: [],
-        address: 'address',
-        position: {
-          lat: 34.8151651,
-          lng: 135.5620685,
-        },
-      },
-      {
-        placeId: 'placeId-02',
-        images: [],
-        name: '阪急茨木市駅',
-        rating: undefined,
-        phoneNumber: 'phoneNumber',
-        website: 'website',
-        weekdayText: [],
-        address: 'address',
-        position: {
-          lat: 34.8166592,
-          lng: 135.5758172,
-        },
-      },
-    ];
-    setSearchedShopList(dummySearchedShopList);
+    const data = await fetchWishListByName(searchText);
+    setSearchedShopList(data as ShopInfo[]);
   };
 
   return (
