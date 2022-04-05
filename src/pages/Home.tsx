@@ -22,7 +22,7 @@ const Home: React.FC = () => {
   // マップ上でクリックしたお店
   const [selectedShop, setSelectedShop] = useState<ShopInfo | null>(null);
   // ホーム画面で検索したお店
-  const [searchedShopList, setSearchedShopList] = useState<ShopInfo[]>([]);
+  const [searchedShopList, setSearchedShopList] = useState<ShopInfo[] | null>(null);
   const [searchText, setSearchText] = useState('');
   const [isOrderedByRating, setIsOrderedByRating] = useState(false);
 

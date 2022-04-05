@@ -11,7 +11,7 @@ type Props = {
   wishList: ShopInfo[] | undefined;
   selectedShop: ShopInfo | null;
   setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
-  searchedShopList: ShopInfo[];
+  searchedShopList: ShopInfo[] | null;
   isMapViewExpanded: boolean;
   expandView: VoidFunction;
   contractView: VoidFunction;
@@ -54,7 +54,7 @@ const MapView: React.FC<Props> = ({
     fullscreenControl: false,
   };
 
-  const displayShopList = searchedShopList.length > 0 ? searchedShopList : wishList;
+  const displayShopList = searchedShopList || wishList;
 
   const [map, setMap] = useState<google.maps.Map>();
   const onLoad = useCallback((map: google.maps.Map) => setMap(map), []);
