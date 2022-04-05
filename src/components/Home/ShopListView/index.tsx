@@ -60,7 +60,7 @@ const ShopListView: React.FC<Props> = ({
           </button>
         )}
       </div>
-      {isAllShopShow && (
+      {isAllShopShow && displayShopList.length > 0 && (
         <div className="shop-list-view__order">
           <button
             type="button"
