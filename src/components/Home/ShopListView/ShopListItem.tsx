@@ -1,5 +1,6 @@
 import '@/assets/styles/components/Home/ShopListView/ShopListItem.scss';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
 
 type Props = {
@@ -7,6 +8,8 @@ type Props = {
 };
 
 const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
 
@@ -27,8 +30,27 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
 
   const subImages = [shopInfo.images[1], shopInfo.images[2], shopInfo.images[3]];
 
+  const handleToShopDetail = () => {
+    if (!shopInfo.name) return;
+    navigate(`/shop/${shopInfo.name}`, {
+      state: {
+        shopInfo,
+      },
+    });
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter') handleToShopDetail();
+  };
+
   return (
-    <li className="shop-list-item">
+    <div
+      className="shop-list-item"
+      onClick={handleToShopDetail}
+      onKeyDown={(e) => handleKeyDown(e)}
+      role="button"
+      tabIndex={0}
+    >
       <div className="shop-list-item__image-wrapper">
         <div className="shop-list-item__main-image">
           {shopInfo.images[0] ? (
@@ -84,7 +106,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
         )}
         <div className="shop-list-item__info__item">住所: {shopInfo.address || '-'}</div>
       </div>
-    </li>
+    </div>
   );
 };
 

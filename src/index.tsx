@@ -10,6 +10,7 @@ import Home from '@/pages/Home';
 import MyPage from '@/pages/MyPage';
 import reportWebVitals from '@/reportWebVitals';
 import { FirebaseProvider } from './firebase';
+import ShopDetail from './pages/shop/_name';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
+            <Route path="/shop/:name" element={<ShopDetail />} />
             <Route path="/mypage" element={<MyPage />} />
           </Route>
         </Routes>
