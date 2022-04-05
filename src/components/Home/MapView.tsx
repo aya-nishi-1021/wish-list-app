@@ -10,20 +10,22 @@ type Props = {
   isMapView: boolean;
   wishList: ShopInfo[] | undefined;
   selectedShop: ShopInfo | null;
+  setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
+  searchedShopList: ShopInfo[];
   isMapViewExpanded: boolean;
   expandView: VoidFunction;
   contractView: VoidFunction;
-  setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
 };
 
 const MapView: React.FC<Props> = ({
   isMapView,
   wishList,
   selectedShop,
+  setSelectedShop,
+  searchedShopList,
   isMapViewExpanded,
   expandView,
   contractView,
-  setSelectedShop,
 }) => {
   const viewAreaScaleButtonImgAlt = isMapViewExpanded ? 'リストを表示する' : '地図エリアを拡大する';
   const handleScaleMapView = () => {
@@ -40,6 +42,7 @@ const MapView: React.FC<Props> = ({
   };
   const defaultCenter = useMemo(
     () => ({
+      // 京都駅の緯度経度
       lat: 34.985849,
       lng: 135.758767,
     }),
@@ -51,29 +54,31 @@ const MapView: React.FC<Props> = ({
     fullscreenControl: false,
   };
 
+  const displayShopList = searchedShopList.length > 0 ? searchedShopList : wishList;
+
   const [map, setMap] = useState<google.maps.Map>();
   const onLoad = useCallback((map: google.maps.Map) => setMap(map), []);
 
   useEffect(() => {
     const bounds = new window.google.maps.LatLngBounds();
-    if (map && (!wishList || (wishList && wishList.length === 0))) {
+    if (map && (!displayShopList || (displayShopList && displayShopList.length === 0))) {
       bounds.extend(defaultCenter);
       map.setCenter(bounds.getCenter());
       map.setZoom(14);
     }
-    if (map && wishList && wishList.length === 1) {
-      bounds.extend(wishList[0].position);
-      map.setCenter(wishList[0].position);
+    if (map && displayShopList && displayShopList.length === 1) {
+      bounds.extend(displayShopList[0].position);
+      map.setCenter(displayShopList[0].position);
       map.setZoom(14);
     }
-    if (map && !selectedShop && wishList && wishList.length > 1) {
+    if (map && !selectedShop && displayShopList && displayShopList.length > 1) {
       const bounds = new window.google.maps.LatLngBounds();
-      wishList.forEach((shopInfo: ShopInfo) => {
+      displayShopList.forEach((shopInfo: ShopInfo) => {
         bounds.extend(shopInfo.position);
       });
       map.fitBounds(bounds);
     }
-  }, [isMapView, map, wishList, defaultCenter, selectedShop]);
+  }, [isMapView, map, displayShopList, defaultCenter, selectedShop]);
 
   const handleSelectShop = (event: google.maps.MapMouseEvent, shopInfo: ShopInfo) => {
     event.stop();
@@ -103,8 +108,8 @@ const MapView: React.FC<Props> = ({
       </button>
       <div className="map-view__map-wrapper">
         <GoogleMap mapContainerStyle={containerStyle} clickableIcons={false} options={options} onLoad={onLoad}>
-          {wishList &&
-            wishList.map((shopInfo: ShopInfo) => (
+          {displayShopList &&
+            displayShopList.map((shopInfo: ShopInfo) => (
               <Marker
                 position={shopInfo.position}
                 key={shopInfo.placeId}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/pages/MyPage.scss';
 import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
-import Header from '@/components/Common/Header';
+import MyPageHeader from '@/components/MyPage/MyPageHeader';
 import BottomNavi from '@/components/Common/BottomNavi';
 import ToHomeLink from '@/components/MyPage/ToHomeLink';
 
@@ -26,7 +26,7 @@ const MyPage: React.FC = () => {
 
   return (
     <div className="mypage">
-      <Header isSearchBoxShow={false} isAddShopButtonShow={false} headingText="マイページ" />
+      <MyPageHeader />
       <div className="mypage__to-home-link">
         <ToHomeLink />
       </div>

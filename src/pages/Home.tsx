@@ -1,10 +1,10 @@
 import '@/assets/styles/pages/Home.scss';
 import { useEffect, useState } from 'react';
 import { LoadScript } from '@react-google-maps/api';
-import { fetchWishList, ShopInfo } from '@/firebase';
+import { fetchWishList, fetchWishListByRating, ShopInfo } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
-import Header from '@/components/Common/Header';
+import HomeHeader from '@/components/Home/HomeHeader';
 import ShopListView from '@/components/Home/ShopListView';
 import MapView from '@/components/Home/MapView';
 import BottomNavi from '@/components/Common/BottomNavi';
@@ -19,17 +19,21 @@ const Home: React.FC = () => {
   const [wishList, setWishList] = useState<ShopInfo[] | undefined>([]);
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
+  // マップ上でクリックしたお店
   const [selectedShop, setSelectedShop] = useState<ShopInfo | null>(null);
-  const [isOrdered, setIsOrdered] = useState(false);
+  // ホーム画面で検索したお店
+  const [searchedShopList, setSearchedShopList] = useState<ShopInfo[]>([]);
+  const [searchText, setSearchText] = useState('');
+  const [isOrderedByRating, setIsOrderedByRating] = useState(false);
 
   useEffect(() => {
-    void fetchAndSetWishList(isOrdered);
-  }, [isOrdered]);
+    void fetchAndSetWishList(isOrderedByRating);
+  }, [isOrderedByRating]);
 
-  const fetchAndSetWishList = async (isOrdered: boolean) => {
+  const fetchAndSetWishList = async (isOrderedByRating: boolean) => {
     let data;
-    if (isOrdered) {
-      data = await fetchWishList('rating');
+    if (isOrderedByRating) {
+      data = await fetchWishListByRating();
     } else {
       data = await fetchWishList();
     }
@@ -48,15 +52,24 @@ const Home: React.FC = () => {
         <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
           <AddShopDialog handleCloseDialog={closeDialog} />
         </Overlay>
-        <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
+        <HomeHeader
+          searchText={searchText}
+          setSearchText={setSearchText}
+          setSearchedShopList={setSearchedShopList}
+          setSelectedShop={setSelectedShop}
+          handleAddShop={() => setIsAddShopDialogShow(true)}
+        />
         <div className="home__content-wrapper">
           <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
             <ShopListView
               wishList={wishList}
               selectedShop={selectedShop}
               setSelectedShop={setSelectedShop}
-              isOrdered={isOrdered}
-              setIsOrdered={setIsOrdered}
+              setSearchText={setSearchText}
+              searchedShopList={searchedShopList}
+              setSearchedShopList={setSearchedShopList}
+              isOrderedByRating={isOrderedByRating}
+              setIsOrderedByRating={setIsOrderedByRating}
             />
           </div>
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>
@@ -64,10 +77,11 @@ const Home: React.FC = () => {
               isMapView={isMapView}
               wishList={wishList}
               selectedShop={selectedShop}
+              setSelectedShop={setSelectedShop}
+              searchedShopList={searchedShopList}
               isMapViewExpanded={isMapView}
               expandView={() => setIsMapView(true)}
               contractView={() => setIsMapView(false)}
-              setSelectedShop={setSelectedShop}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
