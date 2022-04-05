@@ -8,33 +8,59 @@ type Props = {
   wishList: ShopInfo[] | undefined;
   selectedShop: ShopInfo | null;
   setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
+  setSearchText: Dispatch<SetStateAction<string>>;
+  searchedShopList: ShopInfo[];
+  setSearchedShopList: Dispatch<SetStateAction<ShopInfo[]>>;
   isOrdered: boolean;
   setIsOrdered: Dispatch<SetStateAction<boolean>>;
 };
 
-const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop, isOrdered, setIsOrdered }) => {
-  const description = selectedShop ? '選択中のお店' : `全 ${wishList ? wishList.length : 0}件`;
-  let shopList: ShopInfo[];
+const ShopListView: React.FC<Props> = ({
+  wishList,
+  selectedShop,
+  setSelectedShop,
+  setSearchText,
+  searchedShopList,
+  setSearchedShopList,
+  isOrdered,
+  setIsOrdered,
+}) => {
+  let description: string;
+  let displayShopList: ShopInfo[];
   if (selectedShop) {
-    shopList = [selectedShop];
+    description = '選択中のお店';
+    displayShopList = [selectedShop];
+  } else if (searchedShopList.length > 0) {
+    description = '検索結果';
+    displayShopList = searchedShopList;
   } else if (wishList) {
-    shopList = wishList;
+    description = `全 ${wishList.length}件`;
+    displayShopList = wishList;
   } else {
-    shopList = [];
+    description = '全0件';
+    displayShopList = [];
   }
+
+  const isAllShopShow = !selectedShop && searchedShopList.length === 0;
+
+  const handleResetShopList = () => {
+    setSelectedShop(null);
+    setSearchedShopList([]);
+    setSearchText('');
+  };
 
   return (
     <div className="shop-list-view">
       <div className="shop-list-view__navi">
         <div className="shop-list-view__description">{description}</div>
-        {selectedShop && (
-          <button className="shop-list-view__show-all-button" type="button" onClick={() => setSelectedShop(null)}>
+        {!isAllShopShow && (
+          <button className="shop-list-view__show-all-button" type="button" onClick={handleResetShopList}>
             <img src={IconArrow} alt="一覧に戻る" />
             一覧に戻る
           </button>
         )}
       </div>
-      {!selectedShop && (
+      {isAllShopShow && (
         <div className="shop-list-view__order">
           <button
             type="button"
@@ -45,7 +71,7 @@ const ShopListView: React.FC<Props> = ({ wishList, selectedShop, setSelectedShop
           </button>
         </div>
       )}
-      <ShopList shopList={shopList} />
+      <ShopList shopList={displayShopList} />
     </div>
   );
 };

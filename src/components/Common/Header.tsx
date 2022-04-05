@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ShopInfo } from '@/firebase';
 import '@/assets/styles/components/Common/Header.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
@@ -7,22 +8,54 @@ import SearchBox from '@/components/Common/SearchBox';
 
 type Props = {
   isSearchBoxShow: boolean;
+  searchText?: string;
+  setSearchText?: Dispatch<SetStateAction<string>>;
+  setSearchedShopList?: Dispatch<SetStateAction<ShopInfo[]>>;
+  setSelectedShop?: Dispatch<SetStateAction<ShopInfo | null>>;
   isAddShopButtonShow: boolean;
-  headingText?: string;
   handleAddShop?: VoidFunction;
+  headingText?: string;
 };
 
 const Header: React.FC<Props> = ({
   isSearchBoxShow = true,
+  searchText,
+  setSearchText,
+  setSearchedShopList,
+  setSelectedShop,
   isAddShopButtonShow = true,
-  headingText,
   handleAddShop,
+  headingText,
 }) => {
   const navigate = useNavigate();
 
-  const [inputValue, setInputValue] = useState('');
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    if (setSearchText) setSearchText(e.target.value);
+  };
+
+  const searchShop = () => {
+    if (!searchText && setSearchedShopList) {
+      setSearchedShopList([]);
+      return;
+    }
+    if (setSelectedShop) setSelectedShop(null);
+    const dummySearchedShopList: ShopInfo[] = [
+      {
+        placeId: 'placeId',
+        images: [],
+        name: 'name',
+        rating: undefined,
+        phoneNumber: 'phoneNumber',
+        website: 'website',
+        weekdayText: [],
+        address: 'address',
+        position: {
+          lat: 0,
+          lng: 0,
+        },
+      },
+    ];
+    if (setSearchedShopList) setSearchedShopList(dummySearchedShopList);
   };
 
   return (
@@ -33,9 +66,9 @@ const Header: React.FC<Props> = ({
       <div className="header__center-part">
         {isSearchBoxShow && (
           <SearchBox
-            value={inputValue}
+            value={searchText || ''}
             handleChangeValue={(e) => handleChangeValue(e)}
-            handleSearch={() => console.log('Header の検索ボタンをクリック')}
+            handleSearch={() => searchShop()}
           />
         )}
         {!isSearchBoxShow && (

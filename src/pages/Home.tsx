@@ -19,7 +19,11 @@ const Home: React.FC = () => {
   const [wishList, setWishList] = useState<ShopInfo[] | undefined>([]);
   const [isAddShopDialogShow, setIsAddShopDialogShow] = useState(false);
   const [isMapView, setIsMapView] = useState(false);
+  // マップ上でクリックしたお店
   const [selectedShop, setSelectedShop] = useState<ShopInfo | null>(null);
+  // ホーム画面で検索したお店
+  const [searchedShopList, setSearchedShopList] = useState<ShopInfo[]>([]);
+  const [searchText, setSearchText] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
 
   useEffect(() => {
@@ -48,13 +52,24 @@ const Home: React.FC = () => {
         <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
           <AddShopDialog handleCloseDialog={closeDialog} />
         </Overlay>
-        <Header isSearchBoxShow isAddShopButtonShow handleAddShop={() => setIsAddShopDialogShow(true)} />
+        <Header
+          isSearchBoxShow
+          searchText={searchText}
+          setSearchText={setSearchText}
+          setSearchedShopList={setSearchedShopList}
+          setSelectedShop={setSelectedShop}
+          isAddShopButtonShow
+          handleAddShop={() => setIsAddShopDialogShow(true)}
+        />
         <div className="home__content-wrapper">
           <div className={`home__shop-list-view-wrapper${isMapView ? ' home__shop-list-view-wrapper--map-view' : ''}`}>
             <ShopListView
               wishList={wishList}
               selectedShop={selectedShop}
               setSelectedShop={setSelectedShop}
+              setSearchText={setSearchText}
+              searchedShopList={searchedShopList}
+              setSearchedShopList={setSearchedShopList}
               isOrdered={isOrdered}
               setIsOrdered={setIsOrdered}
             />
