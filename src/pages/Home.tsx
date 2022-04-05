@@ -4,7 +4,7 @@ import { LoadScript } from '@react-google-maps/api';
 import { fetchWishList, ShopInfo } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
-import Header from '@/components/Common/Header';
+import HomeHeader from '@/components/Home/HomeHeader';
 import ShopListView from '@/components/Home/ShopListView';
 import MapView from '@/components/Home/MapView';
 import BottomNavi from '@/components/Common/BottomNavi';
@@ -52,13 +52,11 @@ const Home: React.FC = () => {
         <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
           <AddShopDialog handleCloseDialog={closeDialog} />
         </Overlay>
-        <Header
-          isSearchBoxShow
+        <HomeHeader
           searchText={searchText}
           setSearchText={setSearchText}
           setSearchedShopList={setSearchedShopList}
           setSelectedShop={setSelectedShop}
-          isAddShopButtonShow
           handleAddShop={() => setIsAddShopDialogShow(true)}
         />
         <div className="home__content-wrapper">
