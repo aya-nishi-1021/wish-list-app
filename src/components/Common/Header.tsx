@@ -41,17 +41,31 @@ const Header: React.FC<Props> = ({
     if (setSelectedShop) setSelectedShop(null);
     const dummySearchedShopList: ShopInfo[] = [
       {
-        placeId: 'placeId',
+        placeId: 'placeId-01',
         images: [],
-        name: 'name',
+        name: 'JR茨木駅',
         rating: undefined,
         phoneNumber: 'phoneNumber',
         website: 'website',
         weekdayText: [],
         address: 'address',
         position: {
-          lat: 0,
-          lng: 0,
+          lat: 34.8151651,
+          lng: 135.5620685,
+        },
+      },
+      {
+        placeId: 'placeId-02',
+        images: [],
+        name: '阪急茨木市駅',
+        rating: undefined,
+        phoneNumber: 'phoneNumber',
+        website: 'website',
+        weekdayText: [],
+        address: 'address',
+        position: {
+          lat: 34.8166592,
+          lng: 135.5758172,
         },
       },
     ];

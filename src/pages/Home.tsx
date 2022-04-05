@@ -79,10 +79,11 @@ const Home: React.FC = () => {
               isMapView={isMapView}
               wishList={wishList}
               selectedShop={selectedShop}
+              setSelectedShop={setSelectedShop}
+              searchedShopList={searchedShopList}
               isMapViewExpanded={isMapView}
               expandView={() => setIsMapView(true)}
               contractView={() => setIsMapView(false)}
-              setSelectedShop={setSelectedShop}
             />
           </div>
           <div className="home__view-toggle-button-wrapper">
