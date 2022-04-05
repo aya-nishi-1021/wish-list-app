@@ -9,8 +9,8 @@ type Props = {
   selectedShop: ShopInfo | null;
   setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
   setSearchText: Dispatch<SetStateAction<string>>;
-  searchedShopList: ShopInfo[];
-  setSearchedShopList: Dispatch<SetStateAction<ShopInfo[]>>;
+  searchedShopList: ShopInfo[] | null;
+  setSearchedShopList: Dispatch<SetStateAction<ShopInfo[] | null>>;
   isOrderedByRating: boolean;
   setIsOrderedByRating: Dispatch<SetStateAction<boolean>>;
 };
@@ -30,7 +30,7 @@ const ShopListView: React.FC<Props> = ({
   if (selectedShop) {
     description = '選択中のお店';
     displayShopList = [selectedShop];
-  } else if (searchedShopList.length > 0) {
+  } else if (searchedShopList) {
     description = `検索結果 ${searchedShopList.length}件`;
     displayShopList = searchedShopList;
   } else if (wishList) {
@@ -41,11 +41,11 @@ const ShopListView: React.FC<Props> = ({
     displayShopList = [];
   }
 
-  const isAllShopShow = !selectedShop && searchedShopList.length === 0;
+  const isAllShopShow = !selectedShop && !searchedShopList;
 
   const handleResetShopList = () => {
     setSelectedShop(null);
-    setSearchedShopList([]);
+    setSearchedShopList(null);
     setSearchText('');
   };
 

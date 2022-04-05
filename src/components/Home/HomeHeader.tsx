@@ -7,7 +7,7 @@ import SearchBox from '@/components/Common/SearchBox';
 type Props = {
   searchText: string;
   setSearchText: Dispatch<SetStateAction<string>>;
-  setSearchedShopList: Dispatch<SetStateAction<ShopInfo[]>>;
+  setSearchedShopList: Dispatch<SetStateAction<ShopInfo[] | null>>;
   setSelectedShop: Dispatch<SetStateAction<ShopInfo | null>>;
   handleAddShop: VoidFunction;
 };
@@ -25,7 +25,7 @@ const HomeHeader: React.FC<Props> = ({
 
   const searchShop = async () => {
     if (!searchText) {
-      setSearchedShopList([]);
+      setSearchedShopList(null);
       return;
     }
     setSelectedShop(null);
