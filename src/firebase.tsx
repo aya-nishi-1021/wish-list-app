@@ -83,11 +83,11 @@ export const fetchWishListByRating = async () => {
 export const fetchWishListByName = async (name: string) => {
   const data = (await fetchWishList()) as ShopInfo[];
   if (!data) return undefined;
-  const sortedData = data.filter((shopInfo: ShopInfo) => {
+  const filteredData = data.filter((shopInfo: ShopInfo) => {
     if (!shopInfo.name) return false;
     return shopInfo.name.toLowerCase().indexOf(name) > -1;
   });
-  return sortedData;
+  return filteredData;
 };
 
 export type ShopInfo = {
