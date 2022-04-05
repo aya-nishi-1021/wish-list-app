@@ -1,7 +1,7 @@
 import '@/assets/styles/pages/Home.scss';
 import { useEffect, useState } from 'react';
 import { LoadScript } from '@react-google-maps/api';
-import { fetchWishList, ShopInfo } from '@/firebase';
+import { fetchWishList, fetchWishListByRating, ShopInfo } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
 import AddShopDialog from '@/components/Home/AddShopDialog';
 import HomeHeader from '@/components/Home/HomeHeader';
@@ -24,16 +24,16 @@ const Home: React.FC = () => {
   // ホーム画面で検索したお店
   const [searchedShopList, setSearchedShopList] = useState<ShopInfo[]>([]);
   const [searchText, setSearchText] = useState('');
-  const [isOrdered, setIsOrdered] = useState(false);
+  const [isOrderedByRating, setIsOrderedByRating] = useState(false);
 
   useEffect(() => {
-    void fetchAndSetWishList(isOrdered);
-  }, [isOrdered]);
+    void fetchAndSetWishList(isOrderedByRating);
+  }, [isOrderedByRating]);
 
-  const fetchAndSetWishList = async (isOrdered: boolean) => {
+  const fetchAndSetWishList = async (isOrderedByRating: boolean) => {
     let data;
-    if (isOrdered) {
-      data = await fetchWishList('rating');
+    if (isOrderedByRating) {
+      data = await fetchWishListByRating();
     } else {
       data = await fetchWishList();
     }
@@ -68,8 +68,8 @@ const Home: React.FC = () => {
               setSearchText={setSearchText}
               searchedShopList={searchedShopList}
               setSearchedShopList={setSearchedShopList}
-              isOrdered={isOrdered}
-              setIsOrdered={setIsOrdered}
+              isOrderedByRating={isOrderedByRating}
+              setIsOrderedByRating={setIsOrderedByRating}
             />
           </div>
           <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>

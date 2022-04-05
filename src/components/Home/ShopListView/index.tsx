@@ -11,8 +11,8 @@ type Props = {
   setSearchText: Dispatch<SetStateAction<string>>;
   searchedShopList: ShopInfo[];
   setSearchedShopList: Dispatch<SetStateAction<ShopInfo[]>>;
-  isOrdered: boolean;
-  setIsOrdered: Dispatch<SetStateAction<boolean>>;
+  isOrderedByRating: boolean;
+  setIsOrderedByRating: Dispatch<SetStateAction<boolean>>;
 };
 
 const ShopListView: React.FC<Props> = ({
@@ -22,8 +22,8 @@ const ShopListView: React.FC<Props> = ({
   setSearchText,
   searchedShopList,
   setSearchedShopList,
-  isOrdered,
-  setIsOrdered,
+  isOrderedByRating,
+  setIsOrderedByRating,
 }) => {
   let description: string;
   let displayShopList: ShopInfo[];
@@ -64,8 +64,10 @@ const ShopListView: React.FC<Props> = ({
         <div className="shop-list-view__order">
           <button
             type="button"
-            className={`shop-list-view__order-button${isOrdered ? ' shop-list-view__order-button--selected' : ''}`}
-            onClick={() => setIsOrdered(!isOrdered)}
+            className={`shop-list-view__order-button${
+              isOrderedByRating ? ' shop-list-view__order-button--selected' : ''
+            }`}
+            onClick={() => setIsOrderedByRating(!isOrderedByRating)}
           >
             評価順
           </button>

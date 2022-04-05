@@ -58,17 +58,21 @@ firebase.firestore().settings({
   merge: true,
 });
 
-export type Order = 'rating';
-
-export const fetchWishList = async (order?: Order) => {
+export const fetchWishList = async () => {
   let data;
   try {
-    let snapShot: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>;
-    if (order && order === 'rating') {
-      snapShot = await db.collection('wishList').orderBy('rating', 'desc').get();
-    } else {
-      snapShot = await db.collection('wishList').get();
-    }
+    const snapShot = await db.collection('wishList').get();
+    data = snapShot.docs.map((doc) => doc.data());
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
+
+export const fetchWishListByRating = async () => {
+  let data;
+  try {
+    const snapShot = await db.collection('wishList').orderBy('rating', 'desc').get();
     data = snapShot.docs.map((doc) => doc.data());
   } catch (error) {
     console.log(error);
