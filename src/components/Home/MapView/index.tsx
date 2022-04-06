@@ -1,10 +1,11 @@
-import '@/assets/styles/components/Home/MapView.scss';
+import '@/assets/styles/components/Home/MapView/index.scss';
 import { useState, useCallback, useEffect, useMemo, Dispatch, SetStateAction } from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
+import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import { ShopInfo } from '@/firebase';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPin from '@/assets/images/icon_pin.svg';
 import IconPinSelected from '@/assets/images/icon_pin_selected.svg';
+import InfoWindowContent from '@/components/Home/MapView/InfoWindowContent';
 
 type Props = {
   isMapView: boolean;
@@ -94,6 +95,9 @@ const MapView: React.FC<Props> = ({
     }
   };
 
+  // マップ上のピンを選択中 かつ SP/TB の場合に表示する
+  const isInfoWindowShow = selectedShop && window.screen.width <= 768;
+
   return (
     <div className="map-view">
       <button type="button" className="map-view__view-area-scale-button" onClick={handleScaleMapView}>
@@ -120,6 +124,11 @@ const MapView: React.FC<Props> = ({
                 onClick={(e) => handleSelectShop(e, shopInfo)}
               />
             ))}
+          {isInfoWindowShow && (
+            <InfoWindow position={selectedShop.position} onCloseClick={() => setSelectedShop(null)}>
+              <InfoWindowContent shopInfo={selectedShop} />
+            </InfoWindow>
+          )}
         </GoogleMap>
       </div>
     </div>
