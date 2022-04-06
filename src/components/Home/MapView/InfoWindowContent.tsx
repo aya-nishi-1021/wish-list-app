@@ -1,4 +1,4 @@
-import '@/assets/styles/components/Home/InfoWindowContent.scss';
+import '@/assets/styles/components/Home/MapView/InfoWindowContent.scss';
 import { useNavigate } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
 

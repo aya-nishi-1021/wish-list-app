@@ -1,11 +1,11 @@
-import '@/assets/styles/components/Home/MapView.scss';
+import '@/assets/styles/components/Home/MapView/index.scss';
 import { useState, useCallback, useEffect, useMemo, Dispatch, SetStateAction } from 'react';
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import { ShopInfo } from '@/firebase';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPin from '@/assets/images/icon_pin.svg';
 import IconPinSelected from '@/assets/images/icon_pin_selected.svg';
-import InfoWindowContent from '@/components/Home/InfoWindowContent';
+import InfoWindowContent from '@/components/Home/MapView/InfoWindowContent';
 
 type Props = {
   isMapView: boolean;
