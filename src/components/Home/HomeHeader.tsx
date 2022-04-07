@@ -36,7 +36,7 @@ const HomeHeader: React.FC<Props> = ({
   return (
     <header className="home-header">
       <h1 className="home-header__title">
-        <a href="/">Food Wish List</a>
+        <a href="/">Wish List</a>
       </h1>
       <div className="home-header__center-part">
         <SearchBox

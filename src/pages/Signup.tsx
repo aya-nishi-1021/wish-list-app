@@ -16,7 +16,7 @@ const Signup: React.FC = () => {
 
   return (
     <div className="login-signup">
-      <h2 className="login-signup__title">Food Wish List</h2>
+      <h2 className="login-signup__title">Wish List</h2>
       <LoginSignupArea />
     </div>
   );
