@@ -9,7 +9,7 @@ const MyPageHeader: React.FC = () => {
   return (
     <header className="my-page-header">
       <h1 className="my-page-header__title">
-        <a href="/">Food Wish List</a>
+        <a href="/">Wish List</a>
       </h1>
       <div className="my-page-header__center-part">
         <div className="my-page-header__heading">
