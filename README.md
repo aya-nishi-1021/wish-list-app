@@ -6,7 +6,7 @@ This is a react app of recording shops you want to go.
 
 You can learn how to use this app.
 
-![Demo](https://github.com/aya-nishi-1021/wish-list-app/tree/master/src/assets/images/wish-list-app-demo.mov)
+![Demo](https://user-images.githubusercontent.com/37161238/162149795-6313928c-51b8-48f5-bf66-b399443c33c7.mov)
 
 # Features
 
