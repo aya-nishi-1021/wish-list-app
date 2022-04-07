@@ -1,10 +1,10 @@
 # Overview
 
-- This is a react app of recording shops you want to go.
+This is a react app of recording shops you want to go.
 
 # Demo
 
-- You can learn how to use this app.
+You can learn how to use this app.
 
 ![Demo](https://github.com/aya-nishi-1021/wish-list-app/tree/master/src/assets/images/wish-list-app-demo.mov)
 
@@ -16,19 +16,19 @@
 
 # Installation
 
-Clone the repository
+1. Clone the repository
 
 `git clone https://github.com/aya-nishi-1021/wish-list-app.git`
 
-Change the working directory
+2. Change the working directory
 
 `cd wish-list-app`
 
-Install dependencies
+3. Install dependencies
 
 `npm install`
 
-Create .env.local file in root and add your variables
+4. Create .env.local file in root and add your variables
 
 ```
 REACT_APP_FIREBASE_API_KEY=
@@ -42,7 +42,7 @@ REACT_APP_MAIL_URL="http://localhost:3000/"
 REACT_APP_GOOGLE_MAP_API_KEY=
 ```
 
-Run the app
+5. Run the app
 
 `npm run start`
 
