@@ -31,6 +31,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
     navigate(`/shop/${shopInfo.name}`, {
       state: {
         shopInfo,
+        isOpen,
       },
     });
   };
