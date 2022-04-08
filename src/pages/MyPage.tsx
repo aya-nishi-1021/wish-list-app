@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/pages/MyPage.scss';
 import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
-import MyPageHeader from '@/components/MyPage/MyPageHeader';
+import MyPageHeader from '@/components/Common/MyPageHeader';
 import BottomNavi from '@/components/Common/BottomNavi';
 import ToHomeLink from '@/components/MyPage/ToHomeLink';
 

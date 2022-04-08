@@ -1,4 +1,4 @@
-import '@/assets/styles/components/MyPage/MyPageHeader.scss';
+import '@/assets/styles/components/Common/MyPageHeader.scss';
 import { useNavigate } from 'react-router-dom';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
