@@ -26,7 +26,7 @@ const MyPage: React.FC = () => {
 
   return (
     <div className="mypage">
-      <Header />
+      <Header headingText="マイページ" />
       <div className="mypage__to-home-link">
         <ToHomeLink />
       </div>

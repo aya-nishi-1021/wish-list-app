@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 import IconPerson from '@/assets/images/icon_person.svg';
 
-const Header: React.FC = () => {
+type Props = {
+  headingText: string;
+};
+
+const Header: React.FC<Props> = ({ headingText }) => {
   const navigate = useNavigate();
 
   return (
@@ -16,7 +20,7 @@ const Header: React.FC = () => {
           <button type="button" className="header__heading__back-page-button" onClick={() => navigate(-1)}>
             <img src={IconArrow} alt="前ページに戻る" />
           </button>
-          <h2 className="header__heading__text">マイページ</h2>
+          <h2 className="header__heading__text">{headingText}</h2>
         </div>
       </div>
       <div className="header__right-part">
