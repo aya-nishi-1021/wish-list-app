@@ -11,7 +11,6 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
 
   const { google } = window;
   const service = new google.maps.places.PlacesService(document.createElement('div'));
@@ -24,9 +23,6 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
       setIsOpen(r.opening_hours.isOpen() || false);
     }
   });
-  const handleToggleOpeningHours = () => {
-    setIsOpeningHoursShow(!isOpeningHoursShow);
-  };
 
   const subImages = [shopInfo.images[1], shopInfo.images[2], shopInfo.images[3]];
 
@@ -35,6 +31,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
     navigate(`/shop/${shopInfo.name}`, {
       state: {
         shopInfo,
+        isOpen,
       },
     });
   };
@@ -89,21 +86,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
             '-'
           )}
         </div>
-        <div className="shop-list-item__info__item">
-          営業時間: {isOpen ? '営業中' : '営業時間外'}
-          {shopInfo.weekdayText && (
-            <button type="button" onClick={handleToggleOpeningHours}>
-              {isOpeningHoursShow ? '▲' : '▼'}
-            </button>
-          )}
-        </div>
-        {shopInfo.weekdayText && isOpeningHoursShow && (
-          <ul className="shop-list-item__info__item__opening-hours">
-            {shopInfo.weekdayText.map((text) => (
-              <li key={text}>{text}</li>
-            ))}
-          </ul>
-        )}
+        <div className="shop-list-item__info__item">営業時間: {isOpen ? '営業中' : '営業時間外'}</div>
         <div className="shop-list-item__info__item">住所: {shopInfo.address || '-'}</div>
       </div>
     </div>

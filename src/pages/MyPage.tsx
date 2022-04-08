@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/pages/MyPage.scss';
 import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
-import MyPageHeader from '@/components/MyPage/MyPageHeader';
+import Header from '@/components/Common/Header';
 import BottomNavi from '@/components/Common/BottomNavi';
-import ToHomeLink from '@/components/MyPage/ToHomeLink';
+import ToHomeLink from '@/components/Common/ToHomeLink';
 
 const MyPage: React.FC = () => {
   const { user } = useContext(FirebaseContext);
@@ -26,7 +26,7 @@ const MyPage: React.FC = () => {
 
   return (
     <div className="mypage">
-      <MyPageHeader />
+      <Header headingText="マイページ" />
       <div className="mypage__to-home-link">
         <ToHomeLink />
       </div>
