@@ -5,7 +5,7 @@ import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
 import Header from '@/components/Common/Header';
 import BottomNavi from '@/components/Common/BottomNavi';
-import ToHomeLink from '@/components/MyPage/ToHomeLink';
+import ToHomeLink from '@/components/Common/ToHomeLink';
 
 const MyPage: React.FC = () => {
   const { user } = useContext(FirebaseContext);

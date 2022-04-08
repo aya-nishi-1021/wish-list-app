@@ -1,4 +1,4 @@
-import '@/assets/styles/components/MyPage/ToHomeLink.scss';
+import '@/assets/styles/components/Common/ToHomeLink.scss';
 import IconArrow from '@/assets/images/icon_arrow.svg';
 
 const ToHomeLink: React.FC = () => (
