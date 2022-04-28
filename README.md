@@ -1,6 +1,6 @@
 # Overview
 
-https://wish-list-app.vercel.app/
+[https://wish-list-app.vercel.app/](https://wish-list-app.vercel.app/){:target="_blank"}
 
 This is a react app of recording shops you want to go.
 
