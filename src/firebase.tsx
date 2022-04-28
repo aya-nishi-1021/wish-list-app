@@ -15,8 +15,6 @@ const firebaseConfig = {
 };
 export const app = firebase.initializeApp(firebaseConfig);
 
-console.log(firebaseConfig);
-
 export const loginWithEmail = async (email: string, password: string) => {
   try {
     await app.auth().signInWithEmailAndPassword(email, password);
