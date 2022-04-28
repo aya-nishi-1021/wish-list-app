@@ -61,7 +61,10 @@ firebase.firestore().settings({
 export const fetchWishList = async () => {
   let data;
   try {
-    const snapShot = await db.collection('wishList').get();
+    const user = firebase.auth().currentUser;
+    if (!user) return undefined;
+    const { uid } = user;
+    const snapShot = await db.collection(`/users/${uid}/wishList`).get();
     data = snapShot.docs.map((doc) => doc.data());
   } catch (error) {
     console.log(error);
@@ -72,7 +75,10 @@ export const fetchWishList = async () => {
 export const fetchWishListByRating = async () => {
   let data;
   try {
-    const snapShot = await db.collection('wishList').orderBy('rating', 'desc').get();
+    const user = firebase.auth().currentUser;
+    if (!user) return undefined;
+    const { uid } = user;
+    const snapShot = await db.collection(`/users/${uid}/wishList`).orderBy('rating', 'desc').get();
     data = snapShot.docs.map((doc) => doc.data());
   } catch (error) {
     console.log(error);
@@ -104,7 +110,10 @@ export type ShopInfo = {
 
 export const addWishList = async (shopInfo: ShopInfo) => {
   try {
-    await db.collection('wishList').add(shopInfo);
+    const user = firebase.auth().currentUser;
+    if (!user) return;
+    const { uid } = user;
+    await db.collection(`/users/${uid}/wishList`).add(shopInfo);
   } catch (error) {
     console.log(error);
   }
