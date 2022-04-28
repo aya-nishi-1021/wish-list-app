@@ -52,3 +52,4 @@ You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
 
 - [React.js](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Vercel](https://vercel.com/dashboard)
