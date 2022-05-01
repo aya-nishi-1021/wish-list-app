@@ -1,21 +1,27 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signupWithEmail } from '@/firebase';
 
 const LoginSignupAreaSignupContent: React.FC = () => {
   const navigate = useNavigate();
-  const emailInput = React.createRef<HTMLInputElement>();
-  const passwordInput = React.createRef<HTMLInputElement>();
+  const [emailInputValue, setEmailInputValue] = useState('');
+  const [passwordInputValue, setPasswordInputValue] = useState('');
+
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailInputValue(event.target.value);
+  };
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordInputValue(event.target.value);
+  };
 
   const handleSignupWithEmail = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      const email = emailInput.current?.value;
-      const password = passwordInput.current?.value;
-      if (email && password) await signupWithEmail(email, password);
+      await signupWithEmail(emailInputValue, passwordInputValue);
       navigate('/');
     },
-    [emailInput, passwordInput, navigate]
+    [emailInputValue, passwordInputValue, navigate]
   );
 
   return (
@@ -26,17 +32,22 @@ const LoginSignupAreaSignupContent: React.FC = () => {
           type="text"
           name="email"
           placeholder="email"
-          ref={emailInput}
+          onChange={handleChangeEmail}
         />
         <input
           className="login-signup-area-content__input"
           type="password"
           name="password"
           placeholder="password"
-          ref={passwordInput}
+          onChange={handleChangePassword}
         />
       </div>
-      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleSignupWithEmail}>
+      <button
+        className="login-signup-area-content__submit-button"
+        type="submit"
+        onClick={handleSignupWithEmail}
+        disabled={!emailInputValue || !passwordInputValue}
+      >
         続行する
       </button>
     </div>
