@@ -1,22 +1,28 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
 
 const LoginSignupAreaLoginContent: React.FC = () => {
   const navigate = useNavigate();
-  const emailInput = React.createRef<HTMLInputElement>();
-  const passwordInput = React.createRef<HTMLInputElement>();
+  const [emailInputValue, setEmailInputValue] = useState('');
+  const [passwordInputValue, setPasswordInputValue] = useState('');
+
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailInputValue(event.target.value);
+  };
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordInputValue(event.target.value);
+  };
 
   const handleLoginWithEmail = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      const email = emailInput.current?.value;
-      const password = passwordInput.current?.value;
-      if (email && password) await loginWithEmail(email, password);
+      await loginWithEmail(emailInputValue, passwordInputValue);
       navigate('/');
     },
-    [emailInput, passwordInput, navigate]
+    [emailInputValue, passwordInputValue, navigate]
   );
 
   const handleLoginWithGoogle = useCallback(
@@ -36,14 +42,14 @@ const LoginSignupAreaLoginContent: React.FC = () => {
           type="text"
           name="email"
           placeholder="email"
-          ref={emailInput}
+          onChange={handleChangeEmail}
         />
         <input
           className="login-signup-area-content__input"
           type="password"
           name="password"
           placeholder="password"
-          ref={passwordInput}
+          onChange={handleChangePassword}
         />
         <div className="login-signup-area-content__reset-password-link-wrapper">
           <a className="login-signup-area-content__reset-password-link" href="/login?reset_password">
@@ -51,7 +57,12 @@ const LoginSignupAreaLoginContent: React.FC = () => {
           </a>
         </div>
       </div>
-      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleLoginWithEmail}>
+      <button
+        className="login-signup-area-content__submit-button"
+        type="submit"
+        onClick={handleLoginWithEmail}
+        disabled={!emailInputValue || !passwordInputValue}
+      >
         続行する
       </button>
       <div className="login-signup-area-content__border">または</div>
