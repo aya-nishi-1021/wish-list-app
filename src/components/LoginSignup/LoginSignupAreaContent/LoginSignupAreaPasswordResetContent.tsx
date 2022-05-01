@@ -1,20 +1,23 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { resetPassword } from '@/firebase';
 
 const LoginSignupAreaPasswordResetContent: React.FC = () => {
   const navigate = useNavigate();
-  const emailInput = React.createRef<HTMLInputElement>();
+  const [emailInputValue, setEmailInputValue] = useState('');
+
+  const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailInputValue(event.target.value);
+  };
 
   const handleResetPassword = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      const email = emailInput.current?.value;
-      if (email) await resetPassword(email);
+      await resetPassword(emailInputValue);
       alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
       navigate('/login');
     },
-    [emailInput, navigate]
+    [emailInputValue, navigate]
   );
 
   return (
@@ -28,10 +31,15 @@ const LoginSignupAreaPasswordResetContent: React.FC = () => {
           type="text"
           name="email"
           placeholder="email"
-          ref={emailInput}
+          onChange={handleChangeEmail}
         />
       </div>
-      <button className="login-signup-area-content__submit-button" type="submit" onClick={handleResetPassword}>
+      <button
+        className="login-signup-area-content__submit-button"
+        type="submit"
+        onClick={handleResetPassword}
+        disabled={!emailInputValue}
+      >
         メールを送信する
       </button>
     </div>
