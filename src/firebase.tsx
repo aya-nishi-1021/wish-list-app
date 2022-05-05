@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { FirebaseError } from '@firebase/util';
-import { FirebaseContext } from './contexts';
+import { FirebaseContext } from '@/contexts';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
