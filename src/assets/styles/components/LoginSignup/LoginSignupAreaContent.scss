@@ -4,6 +4,12 @@
     font-size: 1.4rem;
   }
 
+  &__error-message {
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+    color: $theme-red;
+  }
+
   &__input-wrapper {
     margin-bottom: 24px;
   }

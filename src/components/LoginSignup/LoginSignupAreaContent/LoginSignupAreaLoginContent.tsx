@@ -1,41 +1,43 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
 
 const LoginSignupAreaLoginContent: React.FC = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [emailInputValue, setEmailInputValue] = useState('');
   const [passwordInputValue, setPasswordInputValue] = useState('');
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setEmailInputValue(event.target.value);
   };
 
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setPasswordInputValue(event.target.value);
   };
 
-  const handleLoginWithEmail = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await loginWithEmail(emailInputValue, passwordInputValue);
-      navigate('/');
-    },
-    [emailInputValue, passwordInputValue, navigate]
-  );
+  const handleLoginWithEmail = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await loginWithEmail(emailInputValue, passwordInputValue)
+      .then(() => navigate('/'))
+      .catch((error: Error) => setErrorMessage(error.message));
+  };
 
-  const handleLoginWithGoogle = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await loginWithGoogle();
-      navigate('/');
-    },
-    [navigate]
-  );
+  const handleLoginWithGoogle = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await loginWithGoogle()
+      .then(() => navigate('/'))
+      .catch((error: Error) => {
+        setErrorMessage(error.message);
+      });
+  };
 
   return (
     <div className="login-signup-area-content">
+      {errorMessage && <div className="login-signup-area-content__error-message">{errorMessage}</div>}
       <div className="login-signup-area-content__input-wrapper">
         <input
           className="login-signup-area-content__input"

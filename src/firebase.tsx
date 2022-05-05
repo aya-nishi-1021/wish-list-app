@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { FirebaseContext } from './contexts';
+import { FirebaseError } from '@firebase/util';
+import { FirebaseContext } from '@/contexts';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,8 +19,23 @@ export const app = firebase.initializeApp(firebaseConfig);
 export const loginWithEmail = async (email: string, password: string) => {
   try {
     await app.auth().signInWithEmailAndPassword(email, password);
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    switch ((error as FirebaseError).code) {
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/user-disabled':
+        throw Error('ユーザーが無効になっています');
+      case 'auth/user-not-found':
+        throw Error('ユーザーが見つかりません');
+      case 'auth/wrong-password':
+        throw Error('パスワードが間違っています');
+      case 'auth/too-many-requests':
+        throw Error(
+          'パスワードを複数回間違えたため、アカウントがロックされました。時間をおいてから再度ログインしてください'
+        );
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 
@@ -28,7 +44,20 @@ export const loginWithGoogle = async () => {
   try {
     await firebase.auth().signInWithPopup(provider);
   } catch (error) {
-    console.log(error);
+    switch ((error as FirebaseError).code) {
+      case 'auth/cancelled-popup-request':
+      case 'auth/popup-closed-by-user':
+        return;
+      case 'auth/auth-domain-config-required':
+      case 'auth/operation-not-allowed':
+      case 'auth/operation-not-supported-in-this-environment':
+      case 'auth/unauthorized-domain':
+        throw Error('現在この認証方法はご利用いただけません');
+      case 'auth/popup-blocked':
+        throw Error('認証ポップアップがブロックされました。ポップアップブロックをご利用の場合は設定を解除してください');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 
@@ -36,7 +65,18 @@ export const signupWithEmail = async (email: string, password: string) => {
   try {
     await app.auth().createUserWithEmailAndPassword(email, password);
   } catch (error) {
-    console.log(error);
+    switch ((error as FirebaseError).code) {
+      case 'auth/email-already-in-use':
+        throw Error('すでに登録しているメールアドレスです');
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/operation-not-allowed':
+        throw Error('この認証方法はご利用いただけません');
+      case 'auth/weak-password':
+        throw Error('パスワードは6文字以上にしてください');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 
@@ -44,12 +84,23 @@ export const logout = async () => {
   await app.auth().signOut();
 };
 
-export const resetPassword = (email: string) => {
+export const resetPassword = async (email: string) => {
   const actionCodeSettings = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     url: `${process.env.REACT_APP_MAIL_URL!}?email=${email}`,
   };
-  return app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+  try {
+    await app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+  } catch (error: unknown) {
+    switch ((error as FirebaseError).code) {
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/user-not-found':
+        throw Error('ユーザーが見つかりません');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
+  }
 };
 
 export const db = firebase.firestore();

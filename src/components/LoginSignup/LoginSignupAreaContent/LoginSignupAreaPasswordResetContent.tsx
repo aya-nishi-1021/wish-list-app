@@ -1,30 +1,33 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { resetPassword } from '@/firebase';
 
 const LoginSignupAreaPasswordResetContent: React.FC = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [emailInputValue, setEmailInputValue] = useState('');
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setEmailInputValue(event.target.value);
   };
 
-  const handleResetPassword = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await resetPassword(emailInputValue);
-      alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
-      navigate('/login');
-    },
-    [emailInputValue, navigate]
-  );
+  const handleResetPassword = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await resetPassword(emailInputValue)
+      .then(() => {
+        alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
+        navigate('/login');
+      })
+      .catch((error: Error) => setErrorMessage(error.message));
+  };
 
   return (
     <div className="login-signup-area-content">
       <div className="login-signup-area-content__description">
         登録したメールアドレスを入力してください。パスワード再設定ページへのリンクをメールをお送りします。
       </div>
+      {errorMessage && <div className="login-signup-area-content__error-message">{errorMessage}</div>}
       <div className="login-signup-area-content__input-wrapper">
         <input
           className="login-signup-area-content__input"
