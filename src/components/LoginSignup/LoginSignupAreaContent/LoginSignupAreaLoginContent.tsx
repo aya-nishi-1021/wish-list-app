@@ -32,8 +32,11 @@ const LoginSignupAreaLoginContent: React.FC = () => {
   const handleLoginWithGoogle = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      await loginWithGoogle();
-      navigate('/');
+      await loginWithGoogle()
+        .then(() => navigate('/'))
+        .catch((error: Error) => {
+          setErrorMessage(error.message);
+        });
     },
     [navigate]
   );

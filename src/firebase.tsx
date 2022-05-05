@@ -44,7 +44,20 @@ export const loginWithGoogle = async () => {
   try {
     await firebase.auth().signInWithPopup(provider);
   } catch (error) {
-    console.log(error);
+    switch ((error as FirebaseError).code) {
+      case 'auth/cancelled-popup-request':
+      case 'auth/popup-closed-by-user':
+        return;
+      case 'auth/auth-domain-config-required':
+      case 'auth/operation-not-allowed':
+      case 'auth/operation-not-supported-in-this-environment':
+      case 'auth/unauthorized-domain':
+        throw Error('現在この認証方法はご利用いただけません');
+      case 'auth/popup-blocked':
+        throw Error('認証ポップアップがブロックされました。ポップアップブロックをご利用の場合は設定を解除してください');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 
