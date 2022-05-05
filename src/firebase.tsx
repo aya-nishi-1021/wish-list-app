@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { FirebaseError } from '@firebase/util';
 import { FirebaseContext } from './contexts';
 
 const firebaseConfig = {
@@ -18,8 +19,23 @@ export const app = firebase.initializeApp(firebaseConfig);
 export const loginWithEmail = async (email: string, password: string) => {
   try {
     await app.auth().signInWithEmailAndPassword(email, password);
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    switch ((error as FirebaseError).code) {
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/user-disabled':
+        throw Error('ユーザーが無効になっています');
+      case 'auth/user-not-found':
+        throw Error('ユーザーが見つかりません');
+      case 'auth/wrong-password':
+        throw Error('パスワードが間違っています');
+      case 'auth/too-many-requests':
+        throw Error(
+          'パスワードを複数回間違えたため、アカウントがロックされました。時間をおいてから再度ログインしてください'
+        );
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 

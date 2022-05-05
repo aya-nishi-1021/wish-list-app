@@ -5,6 +5,7 @@ import IconGoogle from '@/assets/images/icon_google.svg';
 
 const LoginSignupAreaLoginContent: React.FC = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [emailInputValue, setEmailInputValue] = useState('');
   const [passwordInputValue, setPasswordInputValue] = useState('');
 
@@ -19,8 +20,11 @@ const LoginSignupAreaLoginContent: React.FC = () => {
   const handleLoginWithEmail = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      await loginWithEmail(emailInputValue, passwordInputValue);
-      navigate('/');
+      await loginWithEmail(emailInputValue, passwordInputValue)
+        .then(() => navigate('/'))
+        .catch((error: Error) => {
+          setErrorMessage(error.message);
+        });
     },
     [emailInputValue, passwordInputValue, navigate]
   );
@@ -36,6 +40,7 @@ const LoginSignupAreaLoginContent: React.FC = () => {
 
   return (
     <div className="login-signup-area-content">
+      {errorMessage && <div className="login-signup-area-content__error-message">{errorMessage}</div>}
       <div className="login-signup-area-content__input-wrapper">
         <input
           className="login-signup-area-content__input"
