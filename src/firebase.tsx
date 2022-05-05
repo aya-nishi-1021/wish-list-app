@@ -84,12 +84,23 @@ export const logout = async () => {
   await app.auth().signOut();
 };
 
-export const resetPassword = (email: string) => {
+export const resetPassword = async (email: string) => {
   const actionCodeSettings = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     url: `${process.env.REACT_APP_MAIL_URL!}?email=${email}`,
   };
-  return app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+  try {
+    await app.auth().sendPasswordResetEmail(email, actionCodeSettings);
+  } catch (error: unknown) {
+    switch ((error as FirebaseError).code) {
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/user-not-found':
+        throw Error('ユーザーが見つかりません');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
+  }
 };
 
 export const db = firebase.firestore();
