@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { resetPassword } from '@/firebase';
 
@@ -12,20 +12,15 @@ const LoginSignupAreaPasswordResetContent: React.FC = () => {
     setEmailInputValue(event.target.value);
   };
 
-  const handleResetPassword = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await resetPassword(emailInputValue)
-        .then(() => {
-          alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
-          navigate('/login');
-        })
-        .catch((error: Error) => {
-          setErrorMessage(error.message);
-        });
-    },
-    [emailInputValue, navigate]
-  );
+  const handleResetPassword = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await resetPassword(emailInputValue)
+      .then(() => {
+        alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
+        navigate('/login');
+      })
+      .catch((error: Error) => setErrorMessage(error.message));
+  };
 
   return (
     <div className="login-signup-area-content">

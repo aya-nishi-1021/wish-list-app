@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signupWithEmail } from '@/firebase';
 
@@ -18,17 +18,12 @@ const LoginSignupAreaSignupContent: React.FC = () => {
     setPasswordInputValue(event.target.value);
   };
 
-  const handleSignupWithEmail = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await signupWithEmail(emailInputValue, passwordInputValue)
-        .then(() => navigate('/'))
-        .catch((error: Error) => {
-          setErrorMessage(error.message);
-        });
-    },
-    [emailInputValue, passwordInputValue, navigate]
-  );
+  const handleSignupWithEmail = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await signupWithEmail(emailInputValue, passwordInputValue)
+      .then(() => navigate('/'))
+      .catch((error: Error) => setErrorMessage(error.message));
+  };
 
   return (
     <div className="login-signup-area-content">

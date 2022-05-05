@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginWithEmail, loginWithGoogle } from '@/firebase';
 import IconGoogle from '@/assets/images/icon_google.svg';
@@ -19,29 +19,21 @@ const LoginSignupAreaLoginContent: React.FC = () => {
     setPasswordInputValue(event.target.value);
   };
 
-  const handleLoginWithEmail = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await loginWithEmail(emailInputValue, passwordInputValue)
-        .then(() => navigate('/'))
-        .catch((error: Error) => {
-          setErrorMessage(error.message);
-        });
-    },
-    [emailInputValue, passwordInputValue, navigate]
-  );
+  const handleLoginWithEmail = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await loginWithEmail(emailInputValue, passwordInputValue)
+      .then(() => navigate('/'))
+      .catch((error: Error) => setErrorMessage(error.message));
+  };
 
-  const handleLoginWithGoogle = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      event.preventDefault();
-      await loginWithGoogle()
-        .then(() => navigate('/'))
-        .catch((error: Error) => {
-          setErrorMessage(error.message);
-        });
-    },
-    [navigate]
-  );
+  const handleLoginWithGoogle = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
+    await loginWithGoogle()
+      .then(() => navigate('/'))
+      .catch((error: Error) => {
+        setErrorMessage(error.message);
+      });
+  };
 
   return (
     <div className="login-signup-area-content">
