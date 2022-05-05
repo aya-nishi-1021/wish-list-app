@@ -4,6 +4,7 @@ import { signupWithEmail } from '@/firebase';
 
 const LoginSignupAreaSignupContent: React.FC = () => {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [emailInputValue, setEmailInputValue] = useState('');
   const [passwordInputValue, setPasswordInputValue] = useState('');
 
@@ -18,14 +19,18 @@ const LoginSignupAreaSignupContent: React.FC = () => {
   const handleSignupWithEmail = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      await signupWithEmail(emailInputValue, passwordInputValue);
-      navigate('/');
+      await signupWithEmail(emailInputValue, passwordInputValue)
+        .then(() => navigate('/'))
+        .catch((error: Error) => {
+          setErrorMessage(error.message);
+        });
     },
     [emailInputValue, passwordInputValue, navigate]
   );
 
   return (
     <div className="login-signup-area-content">
+      {errorMessage && <div className="login-signup-area-content__error-message">{errorMessage}</div>}
       <div className="login-signup-area-content__input-wrapper">
         <input
           className="login-signup-area-content__input"

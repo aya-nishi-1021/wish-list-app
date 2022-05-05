@@ -65,7 +65,18 @@ export const signupWithEmail = async (email: string, password: string) => {
   try {
     await app.auth().createUserWithEmailAndPassword(email, password);
   } catch (error) {
-    console.log(error);
+    switch ((error as FirebaseError).code) {
+      case 'auth/email-already-in-use':
+        throw Error('すでに登録しているメールアドレスです');
+      case 'auth/invalid-email':
+        throw Error('メールアドレスの形式が間違っています');
+      case 'auth/operation-not-allowed':
+        throw Error('この認証方法はご利用いただけません');
+      case 'auth/weak-password':
+        throw Error('パスワードは6文字以上にしてください');
+      default:
+        throw Error('エラーが発生しました。時間をおいてから再度ログインしてください');
+    }
   }
 };
 
