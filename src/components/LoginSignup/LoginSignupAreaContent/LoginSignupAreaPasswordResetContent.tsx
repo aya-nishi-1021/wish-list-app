@@ -8,6 +8,7 @@ const LoginSignupAreaPasswordResetContent: React.FC = () => {
   const [emailInputValue, setEmailInputValue] = useState('');
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setEmailInputValue(event.target.value);
   };
 

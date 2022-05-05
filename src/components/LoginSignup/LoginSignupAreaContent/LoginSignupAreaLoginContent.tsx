@@ -10,10 +10,12 @@ const LoginSignupAreaLoginContent: React.FC = () => {
   const [passwordInputValue, setPasswordInputValue] = useState('');
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setEmailInputValue(event.target.value);
   };
 
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (errorMessage) setErrorMessage(null);
     setPasswordInputValue(event.target.value);
   };
 
