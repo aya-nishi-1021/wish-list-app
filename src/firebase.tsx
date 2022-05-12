@@ -149,7 +149,6 @@ export const fetchWishListByName = async (name: string) => {
 
 export type ShopInfo = {
   placeId: string | undefined;
-  images: string[];
   name: string | undefined;
   rating: number | undefined;
   phoneNumber: string | undefined;
