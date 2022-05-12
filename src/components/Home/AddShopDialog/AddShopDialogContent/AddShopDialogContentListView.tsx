@@ -41,7 +41,6 @@ const AddShopDialogContentListView: React.FC<Props> = ({
         if (!r) return;
         void addWishList({
           placeId: r.place_id,
-          images: r.photos ? r.photos.map((photo: google.maps.places.PlacePhoto) => photo.getUrl()) : [],
           name: r.name,
           rating: r.rating,
           phoneNumber: r.formatted_phone_number,
