@@ -1,5 +1,5 @@
 import '@/assets/styles/pages/_name.scss';
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
 import Header from '@/components/Common/Header';
@@ -19,15 +19,20 @@ const ShopDetail: React.FC = () => {
   };
 
   const { google } = window;
-  const service = new google.maps.places.PlacesService(document.createElement('div'));
+  const service = useMemo(
+    () => new google.maps.places.PlacesService(document.createElement('div')),
+    [google.maps.places.PlacesService]
+  );
 
-  if (!shopInfo.placeId) return null;
-  service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      if (!r) return;
-      setShopImages(r.photos ? r.photos.map((photo) => photo.getUrl()) : []);
-    }
-  });
+  useEffect(() => {
+    if (!shopInfo.placeId) return;
+    service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        if (!r) return;
+        setShopImages(r.photos ? r.photos.map((photo) => photo.getUrl()) : []);
+      }
+    });
+  }, [google.maps.places.PlacesServiceStatus.OK, service, shopInfo.placeId]);
 
   return (
     <div className="shop-detail">

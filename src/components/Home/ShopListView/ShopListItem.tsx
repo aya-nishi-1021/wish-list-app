@@ -1,5 +1,5 @@
 import '@/assets/styles/components/Home/ShopListView/ShopListItem.scss';
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
 
@@ -15,22 +15,26 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { google } = window;
-  const service = new google.maps.places.PlacesService(document.createElement('div'));
-
-  if (!shopInfo.placeId) return null;
-  service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      if (!r) return;
-      if (!r.opening_hours) return;
-      setMainImage(r.photos && r.photos[0] ? r.photos[0].getUrl() : null);
-      setSubImages([
-        r.photos && r.photos[1] ? r.photos[1].getUrl() : null,
-        r.photos && r.photos[2] ? r.photos[2].getUrl() : null,
-        r.photos && r.photos[3] ? r.photos[3].getUrl() : null,
-      ]);
-      setIsOpen(r.opening_hours.isOpen() || false);
-    }
-  });
+  const service = useMemo(
+    () => new google.maps.places.PlacesService(document.createElement('div')),
+    [google.maps.places.PlacesService]
+  );
+  useEffect(() => {
+    if (!shopInfo.placeId) return;
+    service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        if (!r) return;
+        if (!r.opening_hours) return;
+        setMainImage(r.photos && r.photos[0] ? r.photos[0].getUrl() : null);
+        setSubImages([
+          r.photos && r.photos[1] ? r.photos[1].getUrl() : null,
+          r.photos && r.photos[2] ? r.photos[2].getUrl() : null,
+          r.photos && r.photos[3] ? r.photos[3].getUrl() : null,
+        ]);
+        setIsOpen(r.opening_hours.isOpen() || false);
+      }
+    });
+  }, [google.maps.places.PlacesServiceStatus.OK, service, shopInfo.placeId]);
 
   const handleToShopDetail = () => {
     if (!shopInfo.name) return;
