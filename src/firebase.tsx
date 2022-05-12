@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -180,18 +180,16 @@ export const FirebaseProvider: React.FC = ({ children }) => {
     });
   }, []);
 
+  const value = useMemo(
+    () => ({
+      user,
+    }),
+    [user]
+  );
+
   if (loading) {
     return <div className="loading">ローディング中...</div>;
   }
 
-  return (
-    <FirebaseContext.Provider
-      // eslint-disable-next-line
-      value={{
-        user,
-      }}
-    >
-      {children}
-    </FirebaseContext.Provider>
-  );
+  return <FirebaseContext.Provider value={value}>{children}</FirebaseContext.Provider>;
 };
