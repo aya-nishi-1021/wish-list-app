@@ -10,6 +10,8 @@ type Props = {
 const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
   const navigate = useNavigate();
 
+  const [mainImage, setMainImage] = useState<string | null>(null);
+  const [subImages, setSubImages] = useState<(string | null)[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const { google } = window;
@@ -20,11 +22,15 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       if (!r) return;
       if (!r.opening_hours) return;
+      setMainImage(r.photos && r.photos[0] ? r.photos[0].getUrl() : null);
+      setSubImages([
+        r.photos && r.photos[1] ? r.photos[1].getUrl() : null,
+        r.photos && r.photos[2] ? r.photos[2].getUrl() : null,
+        r.photos && r.photos[3] ? r.photos[3].getUrl() : null,
+      ]);
       setIsOpen(r.opening_hours.isOpen() || false);
     }
   });
-
-  const subImages = [shopInfo.images[1], shopInfo.images[2], shopInfo.images[3]];
 
   const handleToShopDetail = () => {
     if (!shopInfo.name) return;
@@ -50,8 +56,8 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
     >
       <div className="shop-list-item__image-wrapper">
         <div className="shop-list-item__main-image">
-          {shopInfo.images[0] ? (
-            <img src={shopInfo.images[0]} alt="お店の写真" />
+          {mainImage ? (
+            <img src={mainImage} alt="お店の写真" />
           ) : (
             <div className="shop-list-item__main-image__no-image">
               <span>no image</span>
