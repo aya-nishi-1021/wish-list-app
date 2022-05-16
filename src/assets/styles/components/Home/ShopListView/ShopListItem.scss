@@ -84,39 +84,26 @@
     }
 
     &__main-image {
-      position: relative;
-      width: 100%;
-
-      &::before {
-        display: block;
-        content: '';
-        padding-top: 100%;
-      }
-
-      > img {
-        position: absolute;
-        top: 0;
-      }
+      width: calc(100vw - 32px);
+      height: calc(100vw - 32px);
+      max-width: 540px;
+      max-height: 540px;
 
       &__no-image {
-        position: absolute;
-        top: 0;
         display: flex;
       }
     }
 
     &__sub-image-wrapper {
+      justify-content: flex-start;
       width: 100%;
+      max-width: 540px;
     }
 
     &__sub-image {
-      position: relative;
-      width: 32%;
-
-      > img {
-        position: absolute;
-        top: 0;
-      }
+      width: 80px;
+      height: 80px;
+      margin-right: 8px;
     }
   }
 }
