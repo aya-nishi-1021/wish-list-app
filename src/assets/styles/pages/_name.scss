@@ -30,6 +30,12 @@
     }
   }
 
+  &__shop-delete-button {
+    margin-top: 4px;
+    font-size: 1.2rem;
+    text-decoration: underline;
+  }
+
   &__image-wrapper {
     display: flex;
     justify-content: space-between;

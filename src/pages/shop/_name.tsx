@@ -2,6 +2,8 @@ import '@/assets/styles/pages/_name.scss';
 import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
+import Overlay from '@/components/Common/Overlay';
+import DeleteShopConfirmDialog from '@/components/ShopDetail/DeleteShopConfirmDialog';
 import Header from '@/components/Common/Header';
 import ToHomeLink from '@/components/Common/ToHomeLink';
 import BottomNavi from '@/components/Common/BottomNavi';
@@ -11,12 +13,9 @@ const ShopDetail: React.FC = () => {
   const { shopInfo } = location.state as { shopInfo: ShopInfo };
   const { isOpen } = location.state as { isOpen: boolean };
 
+  const [isDeleteShopConfirmDialogShow, setIsDeleteShopConfirmDialogShow] = useState(false);
   const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
   const [shopImages, setShopImages] = useState<string[]>([]);
-
-  const handleToggleOpeningHours = () => {
-    setIsOpeningHoursShow(!isOpeningHoursShow);
-  };
 
   const { google } = window;
   const service = useMemo(
@@ -34,8 +33,19 @@ const ShopDetail: React.FC = () => {
     });
   }, [google.maps.places.PlacesServiceStatus.OK, service, shopInfo.placeId]);
 
+  const closeDialog = () => {
+    setIsDeleteShopConfirmDialogShow(false);
+  };
+
+  const handleToggleOpeningHours = () => {
+    setIsOpeningHoursShow(!isOpeningHoursShow);
+  };
+
   return (
     <div className="shop-detail">
+      <Overlay isShow={isDeleteShopConfirmDialogShow} hideOverlay={closeDialog}>
+        <DeleteShopConfirmDialog handleCloseDialog={closeDialog} />
+      </Overlay>
       <Header headingText="お店詳細" />
       <div className="shop-detail__to-home-link">
         <ToHomeLink />
@@ -72,6 +82,13 @@ const ShopDetail: React.FC = () => {
           </ul>
         )}
         <div className="shop-detail__item">住所: {shopInfo.address || '-'}</div>
+        <button
+          type="button"
+          className="shop-detail__shop-delete-button"
+          onClick={() => setIsDeleteShopConfirmDialogShow(true)}
+        >
+          × このお店をリストから削除する
+        </button>
         <div className="shop-detail__image-wrapper">
           {shopImages.map((image) => (
             <div className="shop-detail__image" key={image}>
