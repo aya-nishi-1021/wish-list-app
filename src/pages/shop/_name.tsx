@@ -44,7 +44,7 @@ const ShopDetail: React.FC = () => {
   return (
     <div className="shop-detail">
       <Overlay isShow={isDeleteShopConfirmDialogShow} hideOverlay={closeDialog}>
-        <DeleteShopConfirmDialog handleCloseDialog={closeDialog} />
+        <DeleteShopConfirmDialog closeDialog={closeDialog} shopInfoPlaceId={shopInfo.placeId} />
       </Overlay>
       <Header headingText="お店詳細" />
       <div className="shop-detail__to-home-link">
