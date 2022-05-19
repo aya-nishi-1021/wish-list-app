@@ -1,4 +1,4 @@
-.delete-shop-confirm-dialog {
+.delete-shop-info-confirm-dialog {
   position: relative;
   padding: 40px;
   width: 100%;
@@ -50,7 +50,7 @@
 }
 
 @media screen and (max-width: $sp) {
-  .delete-shop-confirm-dialog {
+  .delete-shop-info-confirm-dialog {
     padding: 36px 16px 24px;
     margin: 24px;
 

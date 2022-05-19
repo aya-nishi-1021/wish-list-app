@@ -169,6 +169,18 @@ export const addWishList = async (shopInfo: ShopInfo) => {
   }
 };
 
+export const deleteShopInfoFromWishList = async (placeId: string | undefined) => {
+  const user = firebase.auth().currentUser;
+  if (!user) return;
+  const { uid } = user;
+  await db
+    .collection(`/users/${uid}/wishList`)
+    .where('placeId', '==', placeId)
+    .get()
+    .then((querySnapshot) => querySnapshot.docs[0].ref.delete())
+    .catch((error) => console.log(error));
+};
+
 export const FirebaseProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<firebase.User | null>(null);
   const [loading, setLoading] = useState(true);
