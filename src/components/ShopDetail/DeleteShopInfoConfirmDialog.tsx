@@ -19,16 +19,16 @@ const DeleteShopInfoConfirmDialog: React.FC<Props> = ({ closeDialog, shopInfoPla
   };
 
   return (
-    <div className="delete-shop-confirm-dialog">
-      <button type="button" onClick={closeDialog} className="delete-shop-confirm-dialog__close-button">
+    <div className="delete-shop-info-confirm-dialog">
+      <button type="button" onClick={closeDialog} className="delete-shop-info-confirm-dialog__close-button">
         <img src={IconClose} alt="ダイアログを閉じる" />
       </button>
-      <div className="delete-shop-confirm-dialog__description">このお店をリストから削除していいですか？</div>
-      <div className="delete-shop-confirm-dialog__button-wrapper">
-        <button type="button" className="delete-shop-confirm-dialog__cancel-button" onClick={closeDialog}>
+      <div className="delete-shop-info-confirm-dialog__description">このお店をリストから削除していいですか？</div>
+      <div className="delete-shop-info-confirm-dialog__button-wrapper">
+        <button type="button" className="delete-shop-info-confirm-dialog__cancel-button" onClick={closeDialog}>
           キャンセル
         </button>
-        <button type="button" className="delete-shop-confirm-dialog__execute-button" onClick={handleExecute}>
+        <button type="button" className="delete-shop-info-confirm-dialog__execute-button" onClick={handleExecute}>
           削除する
         </button>
       </div>
