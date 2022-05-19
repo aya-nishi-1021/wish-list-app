@@ -8,7 +8,7 @@ type Props = {
   shopInfoPlaceId: string | undefined;
 };
 
-const DeleteShopConfirmDialog: React.FC<Props> = ({ closeDialog, shopInfoPlaceId }) => {
+const DeleteShopInfoConfirmDialog: React.FC<Props> = ({ closeDialog, shopInfoPlaceId }) => {
   const navigate = useNavigate();
 
   const handleExecute = async () => {
@@ -36,4 +36,4 @@ const DeleteShopConfirmDialog: React.FC<Props> = ({ closeDialog, shopInfoPlaceId
   );
 };
 
-export default DeleteShopConfirmDialog;
+export default DeleteShopInfoConfirmDialog;

@@ -3,7 +3,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
-import DeleteShopConfirmDialog from '@/components/ShopDetail/DeleteShopConfirmDialog';
+import DeleteShopInfoConfirmDialog from '@/components/ShopDetail/DeleteShopInfoConfirmDialog';
 import Header from '@/components/Common/Header';
 import ToHomeLink from '@/components/Common/ToHomeLink';
 import BottomNavi from '@/components/Common/BottomNavi';
@@ -44,7 +44,7 @@ const ShopDetail: React.FC = () => {
   return (
     <div className="shop-detail">
       <Overlay isShow={isDeleteShopConfirmDialogShow} hideOverlay={closeDialog}>
-        <DeleteShopConfirmDialog closeDialog={closeDialog} shopInfoPlaceId={shopInfo.placeId} />
+        <DeleteShopInfoConfirmDialog closeDialog={closeDialog} shopInfoPlaceId={shopInfo.placeId} />
       </Overlay>
       <Header headingText="お店詳細" />
       <div className="shop-detail__to-home-link">
