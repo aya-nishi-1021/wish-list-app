@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   return (
     <div className="home">
       <Overlay isShow={isAddShopDialogShow} hideOverlay={closeDialog}>
-        <AddShopDialog handleCloseDialog={closeDialog} />
+        <AddShopDialog closeDialog={closeDialog} />
       </Overlay>
       <HomeHeader
         searchText={searchText}
