@@ -13,6 +13,7 @@ type Props = {
   isAddedShopInfo: boolean;
   setIsAddedShopInfo: Dispatch<SetStateAction<boolean>>;
   searchResultShopInfoList: SearchResultShopInfoList;
+  closeDialog: VoidFunction;
 };
 
 const AddShopDialogContent: React.FC<Props> = ({
@@ -25,15 +26,17 @@ const AddShopDialogContent: React.FC<Props> = ({
   isAddedShopInfo,
   setIsAddedShopInfo,
   searchResultShopInfoList,
+  closeDialog,
 }) => {
   if (isSearching) {
     return <AddShopDialogContentMessageView text="検索中..." />;
   }
 
+  if (isDuplicateShopInfo) {
+    return <AddShopDialogContentMessageView text="すでに行きたいお店リストに追加済みです" />;
+  }
+
   if (isAddedShopInfo) {
-    if (isDuplicateShopInfo) {
-      return <AddShopDialogContentMessageView text="すでに行きたいお店リストに追加済みです" />;
-    }
     return <AddShopDialogContentMessageView text={`${selectedShopName || ''} を行きたいお店リストに追加しました！`} />;
   }
 
@@ -44,6 +47,7 @@ const AddShopDialogContent: React.FC<Props> = ({
         setIsDuplicateShopInfo={setIsDuplicateShopInfo}
         setIsAddedShopInfo={setIsAddedShopInfo}
         searchResultShopInfoList={searchResultShopInfoList}
+        closeDialog={closeDialog}
       />
     );
   }

@@ -8,6 +8,7 @@ type Props = {
   setIsDuplicateShopInfo: Dispatch<SetStateAction<boolean>>;
   setIsAddedShopInfo: Dispatch<SetStateAction<boolean>>;
   searchResultShopInfoList: SearchResultShopInfoList;
+  closeDialog: VoidFunction;
 };
 
 const AddShopDialogContentListView: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const AddShopDialogContentListView: React.FC<Props> = ({
   setSelectedShopName,
   setIsDuplicateShopInfo,
   setIsAddedShopInfo,
+  closeDialog,
 }) => {
   const handleAddShopInfo = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -31,7 +33,6 @@ const AddShopDialogContentListView: React.FC<Props> = ({
     const wishList = await fetchWishList();
     if (wishList?.some((shopInfo) => shopInfo.placeId === placeId)) {
       setIsDuplicateShopInfo(true);
-      setIsAddedShopInfo(true);
       return;
     }
 
@@ -55,6 +56,9 @@ const AddShopDialogContentListView: React.FC<Props> = ({
       }
     });
     setIsAddedShopInfo(true);
+    setTimeout(() => {
+      closeDialog();
+    }, 1000);
   };
 
   return (
