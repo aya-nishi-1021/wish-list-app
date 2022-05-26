@@ -5,7 +5,7 @@ import SearchBox from '@/components/Common/SearchBox';
 import AddShopDialogContent from '@/components/Home/AddShopDialog/AddShopDialogContent';
 
 type Props = {
-  handleCloseDialog: VoidFunction;
+  closeDialog: VoidFunction;
 };
 
 export type SearchResultShopInfo = {
@@ -15,7 +15,7 @@ export type SearchResultShopInfo = {
 };
 export type SearchResultShopInfoList = SearchResultShopInfo[];
 
-const AddShopDialog: React.FC<Props> = ({ handleCloseDialog }) => {
+const AddShopDialog: React.FC<Props> = ({ closeDialog }) => {
   const [inputValue, setInputValue] = useState('');
   const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -75,7 +75,7 @@ const AddShopDialog: React.FC<Props> = ({ handleCloseDialog }) => {
 
   return (
     <div className="add-shop-dialog">
-      <button type="button" onClick={handleCloseDialog} className="add-shop-dialog__close-button">
+      <button type="button" onClick={closeDialog} className="add-shop-dialog__close-button">
         <img src={IconClose} alt="ダイアログを閉じる" />
       </button>
       <div className="add-shop-dialog__search-box-wrapper">
@@ -91,6 +91,7 @@ const AddShopDialog: React.FC<Props> = ({ handleCloseDialog }) => {
         isAddedShopInfo={isAddedShopInfo}
         setIsAddedShopInfo={setIsAddedShopInfo}
         searchResultShopInfoList={searchResultShopInfoList}
+        closeDialog={closeDialog}
       />
     </div>
   );
