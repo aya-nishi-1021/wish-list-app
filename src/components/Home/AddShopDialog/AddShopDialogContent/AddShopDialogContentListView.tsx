@@ -6,7 +6,6 @@ import { SearchResultShopInfo, SearchResultShopInfoList } from '@/components/Hom
 type Props = {
   setSelectedShopName: Dispatch<SetStateAction<string | null>>;
   setIsDuplicateShopInfo: Dispatch<SetStateAction<boolean>>;
-  isAddedShopInfo: boolean;
   setIsAddedShopInfo: Dispatch<SetStateAction<boolean>>;
   searchResultShopInfoList: SearchResultShopInfoList;
   closeDialog: VoidFunction;
@@ -16,7 +15,6 @@ const AddShopDialogContentListView: React.FC<Props> = ({
   searchResultShopInfoList,
   setSelectedShopName,
   setIsDuplicateShopInfo,
-  isAddedShopInfo,
   setIsAddedShopInfo,
   closeDialog,
 }) => {
@@ -35,7 +33,6 @@ const AddShopDialogContentListView: React.FC<Props> = ({
     const wishList = await fetchWishList();
     if (wishList?.some((shopInfo) => shopInfo.placeId === placeId)) {
       setIsDuplicateShopInfo(true);
-      setIsAddedShopInfo(true);
       return;
     }
 
@@ -59,11 +56,9 @@ const AddShopDialogContentListView: React.FC<Props> = ({
       }
     });
     setIsAddedShopInfo(true);
-    if (!isAddedShopInfo) {
-      setTimeout(() => {
-        closeDialog();
-      }, 1000);
-    }
+    setTimeout(() => {
+      closeDialog();
+    }, 1000);
   };
 
   return (

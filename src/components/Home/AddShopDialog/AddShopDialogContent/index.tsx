@@ -32,10 +32,11 @@ const AddShopDialogContent: React.FC<Props> = ({
     return <AddShopDialogContentMessageView text="検索中..." />;
   }
 
+  if (isDuplicateShopInfo) {
+    return <AddShopDialogContentMessageView text="すでに行きたいお店リストに追加済みです" />;
+  }
+
   if (isAddedShopInfo) {
-    if (isDuplicateShopInfo) {
-      return <AddShopDialogContentMessageView text="すでに行きたいお店リストに追加済みです" />;
-    }
     return <AddShopDialogContentMessageView text={`${selectedShopName || ''} を行きたいお店リストに追加しました！`} />;
   }
 
@@ -44,7 +45,6 @@ const AddShopDialogContent: React.FC<Props> = ({
       <AddShopDialogContentListView
         setSelectedShopName={setSelectedShopName}
         setIsDuplicateShopInfo={setIsDuplicateShopInfo}
-        isAddedShopInfo={isAddedShopInfo}
         setIsAddedShopInfo={setIsAddedShopInfo}
         searchResultShopInfoList={searchResultShopInfoList}
         closeDialog={closeDialog}
