@@ -6,15 +6,19 @@ import { SearchResultShopInfo, SearchResultShopInfoList } from '@/components/Hom
 type Props = {
   setSelectedShopName: Dispatch<SetStateAction<string | null>>;
   setIsDuplicateShopInfo: Dispatch<SetStateAction<boolean>>;
+  isAddedShopInfo: boolean;
   setIsAddedShopInfo: Dispatch<SetStateAction<boolean>>;
   searchResultShopInfoList: SearchResultShopInfoList;
+  closeDialog: VoidFunction;
 };
 
 const AddShopDialogContentListView: React.FC<Props> = ({
   searchResultShopInfoList,
   setSelectedShopName,
   setIsDuplicateShopInfo,
+  isAddedShopInfo,
   setIsAddedShopInfo,
+  closeDialog,
 }) => {
   const handleAddShopInfo = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -55,6 +59,11 @@ const AddShopDialogContentListView: React.FC<Props> = ({
       }
     });
     setIsAddedShopInfo(true);
+    if (!isAddedShopInfo) {
+      setTimeout(() => {
+        closeDialog();
+      }, 1000);
+    }
   };
 
   return (

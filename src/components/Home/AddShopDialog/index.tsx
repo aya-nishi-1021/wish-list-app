@@ -91,6 +91,7 @@ const AddShopDialog: React.FC<Props> = ({ handleCloseDialog }) => {
         isAddedShopInfo={isAddedShopInfo}
         setIsAddedShopInfo={setIsAddedShopInfo}
         searchResultShopInfoList={searchResultShopInfoList}
+        closeDialog={handleCloseDialog}
       />
     </div>
   );
