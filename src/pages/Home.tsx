@@ -79,7 +79,7 @@ const Home: React.FC = () => {
         </div>
         <div className="home__view-toggle-button-wrapper">
           <ViewToggleButton
-            isShopListView={!isMapView}
+            isMapView={isMapView}
             showShopListView={() => setIsMapView(false)}
             showMapView={() => setIsMapView(true)}
           />
