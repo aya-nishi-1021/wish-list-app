@@ -1,5 +1,4 @@
 import { useContext, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '@/assets/styles/pages/MyPage.scss';
 import { FirebaseContext } from '@/contexts';
 import { resetPassword, logout } from '@/firebase';
@@ -9,20 +8,19 @@ import ToHomeLink from '@/components/Common/ToHomeLink';
 
 const MyPage: React.FC = () => {
   const { user } = useContext(FirebaseContext);
-  const navigate = useNavigate();
-  if (!user) navigate('/login');
 
   const handleResetPassword = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       event.preventDefault();
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      await resetPassword(user!.email!);
+      if (!user || !user.email) return;
+      await resetPassword(user.email);
       alert('パスワード再設定ページへのリンクを送信しました。メールをご確認ください。');
       await logout();
-      navigate('/login');
     },
-    [user, navigate]
+    [user]
   );
+
+  if (!user) return null;
 
   return (
     <div className="mypage">
@@ -31,8 +29,7 @@ const MyPage: React.FC = () => {
         <ToHomeLink />
       </div>
       <div className="mypage__content-wrapper">
-        {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-        <div className="mypage__email">メールアドレス: {user!.email}</div>
+        <div className="mypage__email">メールアドレス: {user.email}</div>
         <button className="mypage__password-reset-button" type="button" onClick={handleResetPassword}>
           パスワードを再設定する
         </button>
