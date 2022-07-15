@@ -7,6 +7,7 @@ import DeleteShopInfoConfirmDialog from '@/components/ShopDetail/DeleteShopInfoC
 import Header from '@/components/Common/Header';
 import ToHomeLink from '@/components/Common/ToHomeLink';
 import BottomNavi from '@/components/Common/BottomNavi';
+import GoneButton from '@/components/Common/GoneButton';
 
 const ShopDetail: React.FC = () => {
   const location = useLocation();
@@ -55,7 +56,10 @@ const ShopDetail: React.FC = () => {
         <ToHomeLink />
       </div>
       <div className="shop-detail__content-wrapper">
-        <div className="shop-detail__name">{shopInfo.name}</div>
+        <div className="shop-detail__name-wrapper">
+          <div className="shop-detail__name">{shopInfo.name}</div>
+          <GoneButton isGone={false} />
+        </div>
         <div className="shop-detail__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-detail__item">
           電話: {shopInfo.phoneNumber ? <a href={`tel:${shopInfo.phoneNumber}`}>{shopInfo.phoneNumber}</a> : '-'}
