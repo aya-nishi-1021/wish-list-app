@@ -58,7 +58,7 @@ const ShopDetail: React.FC = () => {
       <div className="shop-detail__content-wrapper">
         <div className="shop-detail__name-wrapper">
           <div className="shop-detail__name">{shopInfo.name}</div>
-          <GoneButton isGone={false} />
+          <GoneButton isGone={shopInfo.isGone} />
         </div>
         <div className="shop-detail__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-detail__item">
