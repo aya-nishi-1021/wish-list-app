@@ -156,6 +156,7 @@ export type ShopInfo = {
   weekdayText: string[] | undefined;
   address: string | undefined;
   position: google.maps.LatLng | google.maps.LatLngLiteral;
+  isGone: boolean;
 };
 
 export const addWishList = async (shopInfo: ShopInfo) => {

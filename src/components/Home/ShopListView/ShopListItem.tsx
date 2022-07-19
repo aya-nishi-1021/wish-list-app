@@ -84,7 +84,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
       <div className="shop-list-item__info-wrapper">
         <div className="shop-list-item__info__shop-name-wrapper">
           <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
-          <GoneButton isGone />
+          <GoneButton isGone={shopInfo.isGone} />
         </div>
         <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-list-item__info__item">
