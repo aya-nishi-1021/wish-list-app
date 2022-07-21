@@ -170,6 +170,20 @@ export const addWishList = async (shopInfo: ShopInfo) => {
   }
 };
 
+export const fetchShopInfo = async (shopName: string | undefined) => {
+  let data;
+  try {
+    const user = firebase.auth().currentUser;
+    if (!user) return undefined;
+    const { uid } = user;
+    const snapShot = await db.collection(`/users/${uid}/wishList`).where('name', '==', shopName).get();
+    data = snapShot.docs.map((doc) => doc.data());
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
+
 export const deleteShopInfoFromWishList = async (placeId: string | undefined) => {
   const user = firebase.auth().currentUser;
   if (!user) return;
