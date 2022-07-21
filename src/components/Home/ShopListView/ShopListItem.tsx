@@ -2,12 +2,14 @@ import '@/assets/styles/components/Home/ShopListView/ShopListItem.scss';
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShopInfo } from '@/firebase';
+import GoneButton from '@/components/Common/GoneButton';
 
 type Props = {
   shopInfo: ShopInfo;
+  updateShopInfo: VoidFunction;
 };
 
-const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
+const ShopListItem: React.FC<Props> = ({ shopInfo, updateShopInfo }) => {
   const navigate = useNavigate();
 
   const [mainImage, setMainImage] = useState<string | null>(null);
@@ -81,7 +83,10 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
         )}
       </div>
       <div className="shop-list-item__info-wrapper">
-        <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
+        <div className="shop-list-item__info__shop-name-wrapper">
+          <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
+          <GoneButton isGone={shopInfo.isGone} placeId={shopInfo.placeId} updateShopInfo={updateShopInfo} />
+        </div>
         <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-list-item__info__item">
           電話: {shopInfo.phoneNumber ? <a href={`tel:${shopInfo.phoneNumber}`}>{shopInfo.phoneNumber}</a> : '-'}

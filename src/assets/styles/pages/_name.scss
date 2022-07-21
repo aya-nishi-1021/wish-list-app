@@ -10,8 +10,14 @@
     margin: 0 auto;
   }
 
-  &__name {
+  &__name-wrapper {
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 12px;
+  }
+
+  &__name {
+    margin-right: 8px;
     font-size: 1.6rem;
     font-weight: bold;
   }
