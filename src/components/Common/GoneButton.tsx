@@ -4,12 +4,13 @@ import { updateIsGone } from '@/firebase';
 type Props = {
   isGone: boolean;
   placeId: string | undefined;
+  updateShopInfo: VoidFunction;
 };
 
-const GoneButton: React.FC<Props> = ({ isGone, placeId }) => {
+const GoneButton: React.FC<Props> = ({ isGone, placeId, updateShopInfo }) => {
   const handleToggleGoneFlag = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
-    await updateIsGone(!isGone, placeId);
+    await updateIsGone(!isGone, placeId).then(() => updateShopInfo());
   };
 
   return (
