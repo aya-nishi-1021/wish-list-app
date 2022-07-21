@@ -13,6 +13,7 @@ type Props = {
   setSearchedShopList: Dispatch<SetStateAction<ShopInfo[] | null>>;
   isOrderedByRating: boolean;
   setIsOrderedByRating: Dispatch<SetStateAction<boolean>>;
+  fetchAndSetWishList: VoidFunction;
 };
 
 const ShopListView: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const ShopListView: React.FC<Props> = ({
   setSearchedShopList,
   isOrderedByRating,
   setIsOrderedByRating,
+  fetchAndSetWishList,
 }) => {
   let description: string;
   let displayShopList: ShopInfo[];
@@ -73,7 +75,7 @@ const ShopListView: React.FC<Props> = ({
           </button>
         </div>
       )}
-      <ShopList shopList={displayShopList} />
+      <ShopList shopList={displayShopList} fetchAndSetWishList={fetchAndSetWishList} />
     </div>
   );
 };

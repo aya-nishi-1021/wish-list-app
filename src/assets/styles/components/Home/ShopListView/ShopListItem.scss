@@ -52,8 +52,14 @@
   }
 
   &__info {
-    &__shop-name {
+    &__shop-name-wrapper {
+      display: flex;
+      flex-wrap: wrap;
       margin-bottom: 8px;
+    }
+
+    &__shop-name {
+      margin-right: 8px;
       font-size: 1.6rem;
       font-weight: bold;
     }

@@ -52,6 +52,7 @@ const AddShopDialogContentListView: React.FC<Props> = ({
             lat: r.geometry?.location?.lat() || 0,
             lng: r.geometry?.location?.lng() || 0,
           },
+          isGone: false,
         });
       }
     });

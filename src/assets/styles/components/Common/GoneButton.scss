@@ -1,0 +1,14 @@
+.gone-button {
+  border: 1px solid $theme-brown-dark;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  white-space: nowrap;
+
+  &--gone {
+    background-color: $theme-brown-dark;
+    color: $theme-white;
+    opacity: 1;
+  }
+}
