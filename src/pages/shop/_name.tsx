@@ -1,7 +1,6 @@
 import '@/assets/styles/pages/_name.scss';
 import { useState, useMemo, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { ShopInfo } from '@/firebase';
+import { fetchShopInfo, ShopInfo } from '@/firebase';
 import Overlay from '@/components/Common/Overlay';
 import DeleteShopInfoConfirmDialog from '@/components/ShopDetail/DeleteShopInfoConfirmDialog';
 import Header from '@/components/Common/Header';
@@ -10,9 +9,8 @@ import BottomNavi from '@/components/Common/BottomNavi';
 import GoneButton from '@/components/Common/GoneButton';
 
 const ShopDetail: React.FC = () => {
-  const location = useLocation();
-  const { shopInfo } = location.state as { shopInfo: ShopInfo };
-  const { isOpen } = location.state as { isOpen: boolean };
+  const [shopInfo, setShopInfo] = useState<ShopInfo | undefined>();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [isDeleteShopConfirmDialogShow, setIsDeleteShopConfirmDialogShow] = useState(false);
   const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
@@ -24,15 +22,27 @@ const ShopDetail: React.FC = () => {
     [google.maps.places.PlacesService]
   );
 
+  const pathname = decodeURI(window.location.pathname);
+  const shopName = pathname.substring(6);
+
   useEffect(() => {
-    if (!shopInfo.placeId) return;
+    void fetchAndSetShopInfo(shopName);
+
+    if (!shopInfo?.placeId) return;
     service.getDetails({ placeId: shopInfo.placeId }, (r, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         if (!r) return;
+        if (!r.opening_hours) return;
         setShopImages(r.photos ? r.photos.map((photo) => photo.getUrl()) : []);
+        setIsOpen(r.opening_hours.isOpen() || false);
       }
     });
-  }, [google.maps.places.PlacesServiceStatus.OK, service, shopInfo.placeId]);
+  }, [shopName, shopInfo?.placeId, google.maps.places.PlacesServiceStatus.OK, service]);
+
+  const fetchAndSetShopInfo = async (shopName: string | undefined) => {
+    const data = await fetchShopInfo(shopName);
+    setShopInfo(data ? (data[0] as ShopInfo | undefined) : undefined);
+  };
 
   const closeDialog = () => {
     setIsDeleteShopConfirmDialogShow(false);
@@ -41,6 +51,8 @@ const ShopDetail: React.FC = () => {
   const handleToggleOpeningHours = () => {
     setIsOpeningHoursShow(!isOpeningHoursShow);
   };
+
+  if (!shopInfo) return null;
 
   return (
     <div className="shop-detail">
@@ -58,7 +70,11 @@ const ShopDetail: React.FC = () => {
       <div className="shop-detail__content-wrapper">
         <div className="shop-detail__name-wrapper">
           <div className="shop-detail__name">{shopInfo.name}</div>
-          <GoneButton isGone={shopInfo.isGone} />
+          <GoneButton
+            isGone={shopInfo.isGone}
+            placeId={shopInfo.placeId}
+            updateShopInfo={() => fetchAndSetShopInfo(shopInfo.name)}
+          />
         </div>
         <div className="shop-detail__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-detail__item">

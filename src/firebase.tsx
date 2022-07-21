@@ -164,10 +164,24 @@ export const addWishList = async (shopInfo: ShopInfo) => {
     const user = firebase.auth().currentUser;
     if (!user) return;
     const { uid } = user;
-    await db.collection(`/users/${uid}/wishList`).add(shopInfo);
+    await db.collection(`/users/${uid}/wishList`).doc(shopInfo.placeId).set(shopInfo);
   } catch (error) {
     console.log(error);
   }
+};
+
+export const fetchShopInfo = async (shopName: string | undefined) => {
+  let data;
+  try {
+    const user = firebase.auth().currentUser;
+    if (!user) return undefined;
+    const { uid } = user;
+    const snapShot = await db.collection(`/users/${uid}/wishList`).where('name', '==', shopName).get();
+    data = snapShot.docs.map((doc) => doc.data());
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
 };
 
 export const deleteShopInfoFromWishList = async (placeId: string | undefined) => {
@@ -180,6 +194,17 @@ export const deleteShopInfoFromWishList = async (placeId: string | undefined) =>
     .get()
     .then((querySnapshot) => querySnapshot.docs[0].ref.delete())
     .catch((error) => console.log(error));
+};
+
+export const updateIsGone = async (isGone: boolean, placeId: string | undefined) => {
+  try {
+    const user = firebase.auth().currentUser;
+    if (!user) return;
+    const { uid } = user;
+    await db.collection(`/users/${uid}/wishList`).doc(placeId).set({ isGone }, { merge: true });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const FirebaseProvider: React.FC = ({ children }) => {

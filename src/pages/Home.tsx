@@ -63,6 +63,7 @@ const Home: React.FC = () => {
             setSearchedShopList={setSearchedShopList}
             isOrderedByRating={isOrderedByRating}
             setIsOrderedByRating={setIsOrderedByRating}
+            fetchAndSetWishList={() => fetchAndSetWishList(isOrderedByRating)}
           />
         </div>
         <div className={`home__map-view-wrapper${isMapView ? ' home__map-view-wrapper--map-view' : ''}`}>

@@ -6,9 +6,10 @@ import GoneButton from '@/components/Common/GoneButton';
 
 type Props = {
   shopInfo: ShopInfo;
+  updateShopInfo: VoidFunction;
 };
 
-const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
+const ShopListItem: React.FC<Props> = ({ shopInfo, updateShopInfo }) => {
   const navigate = useNavigate();
 
   const [mainImage, setMainImage] = useState<string | null>(null);
@@ -84,7 +85,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo }) => {
       <div className="shop-list-item__info-wrapper">
         <div className="shop-list-item__info__shop-name-wrapper">
           <div className="shop-list-item__info__shop-name">{shopInfo.name}</div>
-          <GoneButton isGone={shopInfo.isGone} />
+          <GoneButton isGone={shopInfo.isGone} placeId={shopInfo.placeId} updateShopInfo={updateShopInfo} />
         </div>
         <div className="shop-list-item__info__item">Google の評価: {shopInfo.rating || '-'}</div>
         <div className="shop-list-item__info__item">
