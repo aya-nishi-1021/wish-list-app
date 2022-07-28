@@ -15,6 +15,7 @@ const ShopListItem: React.FC<Props> = ({ shopInfo, updateShopInfo }) => {
   const [mainImage, setMainImage] = useState<string | null>(null);
   const [subImages, setSubImages] = useState<(string | null)[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpeningHoursShow, setIsOpeningHoursShow] = useState(false);
 
   const { google } = window;
   const service = useMemo(
@@ -50,6 +51,11 @@ const ShopListItem: React.FC<Props> = ({ shopInfo, updateShopInfo }) => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') handleToShopDetail();
+  };
+
+  const handleToggleOpeningHours = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
+    setIsOpeningHoursShow(!isOpeningHoursShow);
   };
 
   return (
@@ -101,7 +107,21 @@ const ShopListItem: React.FC<Props> = ({ shopInfo, updateShopInfo }) => {
             '-'
           )}
         </div>
-        <div className="shop-list-item__info__item">営業時間: {isOpen ? '営業中' : '営業時間外'}</div>
+        <div className="shop-list-item__info__item">
+          営業時間: {isOpen ? '営業中' : '営業時間外'}
+          {shopInfo.weekdayText && (
+            <button type="button" onClick={handleToggleOpeningHours}>
+              {isOpeningHoursShow ? '▲' : '▼'}
+            </button>
+          )}
+        </div>
+        {shopInfo.weekdayText && isOpeningHoursShow && (
+          <ul className="shop-list-item__info__item__opening-hours">
+            {shopInfo.weekdayText.map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
+        )}
         <div className="shop-list-item__info__item">住所: {shopInfo.address || '-'}</div>
       </div>
     </div>
