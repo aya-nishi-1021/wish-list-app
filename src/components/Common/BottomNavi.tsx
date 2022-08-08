@@ -17,7 +17,7 @@ const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true, handleAddShop
   return (
     <div className="bottom-navi">
       <a href="/" className="bottom-navi__link">
-        <img src={displayIconHome} alt="ホーム" />
+        <img src={displayIconHome} alt="ホーム" className="bottom-navi__link__home-icon" />
       </a>
       {isAddShopButtonShow && (
         <button type="button" className="bottom-navi__add-shop-button" onClick={handleAddShop}>
@@ -25,7 +25,7 @@ const BottomNavi: React.FC<Props> = ({ isAddShopButtonShow = true, handleAddShop
         </button>
       )}
       <a href="/mypage" className="bottom-navi__link">
-        <img src={displayIconPerson} alt="マイページ" />
+        <img src={displayIconPerson} alt="マイページ" className="bottom-navi__link__mypage-icon" />
       </a>
     </div>
   );
