@@ -18,7 +18,7 @@ const LoginSignupAreaSignupContent: React.FC = () => {
     setPasswordInputValue(event.target.value);
   };
 
-  const handleSignupWithEmail = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSignupWithEmail = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await signupWithEmail(emailInputValue, passwordInputValue)
       .then(() => navigate('/'))
@@ -26,7 +26,7 @@ const LoginSignupAreaSignupContent: React.FC = () => {
   };
 
   return (
-    <div className="login-signup-area-content">
+    <form className="login-signup-area-content" onSubmit={handleSignupWithEmail}>
       {errorMessage && <div className="login-signup-area-content__error-message">{errorMessage}</div>}
       <div className="login-signup-area-content__input-wrapper">
         <input
@@ -47,12 +47,11 @@ const LoginSignupAreaSignupContent: React.FC = () => {
       <button
         className="login-signup-area-content__submit-button"
         type="submit"
-        onClick={handleSignupWithEmail}
         disabled={!emailInputValue || !passwordInputValue}
       >
         続行する
       </button>
-    </div>
+    </form>
   );
 };
 
