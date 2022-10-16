@@ -8,6 +8,10 @@
     margin-bottom: 8px;
     font-size: 1.3rem;
     color: $theme-red;
+
+    &--firebase {
+      margin-bottom: 16px;
+    }
   }
 
   &__input-wrapper {
