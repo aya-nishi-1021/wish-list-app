@@ -1,5 +1,6 @@
 import '@/assets/styles/components/Home/HomeHeader.scss';
 import { Dispatch, SetStateAction } from 'react';
+import { Button, styled } from '@material-ui/core';
 import { fetchWishListByName, ShopInfo } from '@/firebase';
 import IconPerson from '@/assets/images/icon_person.svg';
 import SearchBox from '@/components/Common/SearchBox';
@@ -33,6 +34,14 @@ const HomeHeader: React.FC<Props> = ({
     setSearchedShopList(data as ShopInfo[]);
   };
 
+  const AddShopButton = styled(Button)({
+    padding: '8px 12px',
+    borderRadius: 8,
+    backgroundColor: '#ff8ba7',
+    fontSize: '1.4rem',
+    whiteSpace: 'nowrap',
+  });
+
   return (
     <header className="home-header">
       <h1 className="home-header__title">
@@ -46,9 +55,7 @@ const HomeHeader: React.FC<Props> = ({
         />
       </div>
       <div className="home-header__right-part">
-        <button type="button" className="home-header__add-shop-button" onClick={handleAddShop}>
-          + 行きたいお店を追加
-        </button>
+        <AddShopButton onClick={handleAddShop}>+ 行きたいお店を追加</AddShopButton>
         <a href="/mypage" className="home-header__to-mypage-link">
           <img src={IconPerson} alt="マイページ" />
         </a>
